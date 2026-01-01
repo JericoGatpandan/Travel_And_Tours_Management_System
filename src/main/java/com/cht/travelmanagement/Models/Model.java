@@ -129,16 +129,16 @@ public class Model {
 				PreparedStatement preparedStatement = connection.prepareStatement(query);
 				ResultSet resultSet = preparedStatement.executeQuery()) {
 			while (resultSet.next()) {
-				int packageId = resultSet.getInt("packageId");
-				String packageName = resultSet.getString("packageName");
-				String description = resultSet.getString("description");
-				String destination = resultSet.getString("destination");
-				int durationDays = resultSet.getInt("durationDays");
-				int maxParticipants = resultSet.getInt("maxParticipants");
-				String inclusions = resultSet.getString("inclusions");
-				int price = resultSet.getInt("price");
-				boolean isActive = resultSet.getBoolean("isActive");
-				int createdBy = resultSet.getInt("createdBy");
+				int packageId = resultSet.getInt("PackageId");
+				String packageName = resultSet.getString("Name");
+				String description = resultSet.getString("Description");
+				String destination = resultSet.getString("Destination");
+				int durationDays = resultSet.getInt("Duration");
+				int maxParticipants = resultSet.getInt("MaxPax");
+				String inclusions = resultSet.getString("Inclusions");
+				int price = resultSet.getInt("Price");
+				boolean isActive = resultSet.getBoolean("IsActive");
+				int createdBy = resultSet.getInt("CreatedByEmployeeId");
 
 				TourPackage tourPackage = new TourPackage(packageId, packageName, description, destination,
 						durationDays, maxParticipants, inclusions, price, isActive, createdBy);

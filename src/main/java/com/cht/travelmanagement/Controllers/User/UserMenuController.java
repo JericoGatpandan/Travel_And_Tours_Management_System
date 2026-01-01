@@ -23,7 +23,8 @@ public class UserMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        addBooking_btn.setOnAction(event -> {onAddBookingButtonClicked();});
+        addBooking_btn.setOnAction(event -> {
+            onNewBookingButtonClicked();});
         dashboard_btn.setOnAction(event -> {onDashboardButtonClicked();});
         bookings_btn.setOnAction(event -> {onBookingsButtonClicked();});
         clients_btn.setOnAction(event -> {onClientsButtonClicked();});
@@ -35,7 +36,7 @@ public class UserMenuController implements Initializable {
         logout_btn.setOnAction(event -> {onLogoutButtonClicked();});
     }
 
-    private void onAddBookingButtonClicked() {
+    private void onNewBookingButtonClicked() {
         Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.NEW_BOOKING);
     }
 

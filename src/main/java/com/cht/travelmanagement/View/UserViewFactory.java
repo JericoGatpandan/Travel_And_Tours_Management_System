@@ -6,13 +6,14 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class UserViewFactory extends ViewFactory{
 
     // Views
     private ScrollPane userDashboardView;
-    private  AnchorPane addBookingView;
+    private  BorderPane newBookingView;
     private  AnchorPane bookingListView;
     private AnchorPane customerListView;
     private AnchorPane tourPackageListView;
@@ -48,15 +49,15 @@ public class UserViewFactory extends ViewFactory{
         createStage(loader);
     }
 
-    public AnchorPane getNewBookingView() {
-        if (addBookingView == null) {
+    public BorderPane getNewBookingView() {
+        if (newBookingView == null) {
             try {
-                addBookingView = FXMLLoader.load(getClass().getResource("/Views/User/NewBooking-view.fxml"));
+                newBookingView = FXMLLoader.load(getClass().getResource("/Views/User/NewBooking-view.fxml"));
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return addBookingView;
+        return newBookingView;
     }
     public AnchorPane getBookingListView() {
         if (bookingListView == null) {
