@@ -1,23 +1,16 @@
 package com.cht.travelmanagement.View;
 
-import com.cht.travelmanagement.Controllers.User.BookingWizard.BookingNavigationController;
 import com.cht.travelmanagement.Controllers.User.UserController;
-import com.cht.travelmanagement.Models.Model;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Objects;
 
 
@@ -139,7 +132,7 @@ public class UserViewFactory extends ViewFactory{
     public AnchorPane getHotelsListView() {
         if (hotelsListView == null) {
             try {
-                hotelsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Hotels-view.fxml")));
+                hotelsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Accommodations-view.fxml")));
             } catch (Exception e) {
                 e.printStackTrace();
             }

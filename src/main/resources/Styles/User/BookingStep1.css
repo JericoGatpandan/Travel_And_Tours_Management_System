@@ -1,0 +1,71 @@
+/* CONTAINER & LAYOUT */
+.wizard-container {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 30;
+}
+
+/* TEXT TYPOGRAPHY */
+.header-title {
+    -fx-font-family: "Arial";
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B3674; /* Navy Blue */
+}
+
+.header-subtitle {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #A3AED0; /* Soft Grey */
+}
+
+.section-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B3674;
+}
+
+.input-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B3674;
+    -fx-padding: 0 0 5 0; /* Space between label and box */
+}
+
+/* SEARCH BAR (Pill Shape) */
+.search-box-container {
+    -fx-background-color: #F4F7FE; /* Light Grey BG */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-padding: 5 15;
+}
+
+.search-field {
+    -fx-background-color: transparent; /* Transparent so it blends */
+    -fx-prompt-text-fill: #A3AED0;
+    -fx-text-fill: #2B3674;
+}
+
+.search-icon {
+    -fx-fill: #4318FF; /* Bright Blue Icon */
+    -fx-font-size: 16px;
+}
+
+/* STANDARD INPUT FIELDS */
+.text-field, .choice-box {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-border-color: #E0E5F2; /* Very Light Border */
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 8;
+    -fx-text-fill: #2B3674;
+}
+
+.text-field:focused, .choice-box:focused {
+    -fx-border-color: #4318FF; /* Turn Blue on Focus */
+    -fx-background-color: #FFFFFF;
+}
+
+.choice-box {
+    -fx-padding: 4; /* Adjustment for dropdown alignment */
+}

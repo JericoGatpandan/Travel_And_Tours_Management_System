@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.AccommodationsController">
+   <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hotel" />
+         <Button fx:id="addHotel_btn" mnemonicParsing="false" text="Button" />
+         <ListView fx:id="hotelListView" prefHeight="200.0" prefWidth="200.0" />
+      </children>
+   </VBox>
+
+</AnchorPane>

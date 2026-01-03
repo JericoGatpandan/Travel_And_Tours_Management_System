@@ -28,7 +28,6 @@ public class BookingsController implements Initializable {
         newBooking_btn.setOnAction(event -> {onNewBookingButtonClicked();});
 
         loadBookings(recentBookings , bookingList);
-
     }
 
     private void onNewBookingButtonClicked() {

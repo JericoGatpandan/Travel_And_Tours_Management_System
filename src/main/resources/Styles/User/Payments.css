@@ -1,0 +1,23 @@
+.payments-container {
+    -fx-padding: 20;
+    -fx-background-color: yellow; /* White background for clarity */
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Subtle shadow */
+}
+
+.payment-header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50; /* Dark Midnight Blue */
+    -fx-padding: 0 0 15 0;
+}
+
+.new-payment-btn {
+    -fx-background-color: #3498db; /* Bright Blue */
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
