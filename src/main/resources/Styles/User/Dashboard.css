@@ -1,0 +1,113 @@
+/* GLOBAL BACKGROUND */
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: #F4F7FE; /* Very Light Grey/Blue Background */
+}
+.dashboard-container {
+    -fx-background-color: #F4F7FE;
+    -fx-padding: 20;
+}
+
+/* TEXT HIERARCHY */
+.header-title {
+    -fx-font-family: "Arial"; /* Or your preferred font */
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B3674; /* Dark Navy Blue */
+}
+
+.header-subtitle {
+    -fx-font-family: "Arial";
+    -fx-font-size: 14px;
+    -fx-text-fill: #A3AED0; /* Soft Grey */
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B3674;
+}
+
+/* STATISTICS CARDS */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 20; /* Rounded Corners */
+    -fx-effect: dropshadow(three-pass-box, rgba(112, 144, 176, 0.15), 20, 0, 0, 0); /* Soft Shadow */
+    -fx-padding: 15;
+}
+
+.stat-icon {
+    -fx-fill: #3498db; /* Bright Blue Icon */
+    -fx-font-size: 30px;
+}
+
+.stat-icon-container {
+    -fx-background-color: #F4F7FE; /* Light Circle behind icon */
+    -fx-background-radius: 50%;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-alignment: CENTER;
+}
+
+.stat-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #A3AED0;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2B3674;
+}
+
+.stat-subtext {
+    -fx-font-size: 12px;
+    -fx-text-fill: #05CD99; /* Green for "Active" */
+}
+
+/* BUTTONS */
+.primary-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 30; /* Pill shape */
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+}
+.primary-button:hover {
+    -fx-background-color: #2A0EBF;
+}
+.primary-button .glyph-icon {
+    -fx-fill: white;
+}
+
+.secondary-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #3498db;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.secondary-button:hover {
+    -fx-underline: true;
+}
+.secondary-button .glyph-icon {
+    -fx-fill: #3498db;
+}
+
+/* LIST VIEW */
+.list-view {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.list-cell {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-color: #F4F7FE;
+    -fx-border-width: 0 0 2 0; /* Separator line */
+}
+.list-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}

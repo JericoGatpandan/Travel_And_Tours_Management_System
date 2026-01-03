@@ -1,14 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.text.Text?>
-<ScrollPane fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep6Controller"
-			hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-			prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1"
-			xmlns="http://javafx.com/javafx/17.0.12">
-	<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0"/>
-	<Text layoutX="271.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trips"/>
-</ScrollPane>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep6Controller">
+   <children>
+      <VBox layoutX="50.0" layoutY="20.0" prefHeight="360.0" prefWidth="500.0" spacing="10.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label style="-fx-font-weight: bold; -fx-font-size: 16;" text="Final Booking Summary" />
+            
+            <Label text="Client Name:" />
+            <Label fx:id="summary_name_lbl" style="-fx-font-weight: bold;" text="--" />
+            
+            <Label text="Travel Date:" />
+            <Label fx:id="summary_date_lbl" style="-fx-font-weight: bold;" text="--" />
 
+            <Label text="Selected Package:" />
+            <Label fx:id="summary_package_lbl" style="-fx-font-weight: bold;" text="--" />
+            
+            <Label text="Selected Hotel:" />
+            <Label fx:id="summary_hotel_lbl" style="-fx-font-weight: bold;" text="--" />
+            
+            <Label text="Selected Vehicle:" />
+            <Label fx:id="summary_vehicle_lbl" style="-fx-font-weight: bold;" text="--" />
+            
+            <Label style="-fx-font-weight: bold; -fx-font-size: 14;" text="Total Price:" />
+            <Label fx:id="total_price_lbl" style="-fx-font-size: 14; -fx-text-fill: green;" text="PHP 0.00" />
+            
+            <CheckBox fx:id="terms_condition_check" mnemonicParsing="false" text="I agree to the Terms and Conditions and Cancellation Policy." />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -42,12 +42,12 @@ public class UserViewFactory extends ViewFactory{
 
     // Booking
     private final ObjectProperty<BookingButtons>  bookingSelectedButton;
-    private ScrollPane bookingStep1View;
-    private ScrollPane bookingStep2View;
-    private ScrollPane bookingStep3View;
+    private AnchorPane bookingStep1View;
+    private AnchorPane bookingStep2View;
+    private AnchorPane bookingStep3View;
     private AnchorPane bookingStep4View;
-    private ScrollPane bookingStep5View;
-    private ScrollPane bookingStep6View;
+    private AnchorPane bookingStep5View;
+    private AnchorPane bookingStep6View;
 
 
 
@@ -178,7 +178,7 @@ public class UserViewFactory extends ViewFactory{
         return bookingSelectedButton;
     }
 
-    public ScrollPane getBookingStep2View() {
+    public AnchorPane getBookingStep2View() {
         if (bookingStep2View == null) {
             try {
                 bookingStep2View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.PACKAGE_SELECTION)));
@@ -189,7 +189,7 @@ public class UserViewFactory extends ViewFactory{
         return bookingStep2View;
     }
 
-    public ScrollPane getBookingStep3View() {
+    public AnchorPane getBookingStep3View() {
         if (bookingStep3View == null) {
             try {
                 bookingStep3View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.CUSTOMIZATION)));
@@ -210,7 +210,7 @@ public class UserViewFactory extends ViewFactory{
         return bookingStep4View;
     }
 
-    public ScrollPane getBookingStep5View() {
+    public AnchorPane getBookingStep5View() {
         if (bookingStep5View == null) {
             try {
                 bookingStep5View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.VEHICLE_SELECTION)));
@@ -220,7 +220,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return bookingStep5View;
     }
-    public ScrollPane getBookingStep6View() {
+    public AnchorPane getBookingStep6View() {
         if (bookingStep6View == null) {
             try {
                 bookingStep6View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.CONFIRMATION)));
@@ -231,7 +231,7 @@ public class UserViewFactory extends ViewFactory{
         return bookingStep6View;
     }
 
-    public ScrollPane getBookingStep1View() {
+    public AnchorPane getBookingStep1View() {
         if (bookingStep1View == null) {
             try {
                 bookingStep1View = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(FXMLPaths.CUSTOMER_INFORMATION)));

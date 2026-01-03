@@ -1,0 +1,76 @@
+/* LIGHT MODE SIDEBAR THEME */
+
+/* 1. Main Sidebar Background */
+.sidebar-container {
+    -fx-background-color: #FFFFFF; /* Pure White to blend with your Logo */
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 5, 0, 0, 0); /* Subtle shadow on the right */
+}
+
+/* 2. The Title/Header Label (Employee) */
+.sidebar-title {
+    -fx-text-fill: #2C3E50; /* Dark Midnight Blue */
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0 20 0;
+}
+
+/* 3. The Menu Buttons (Normal State) */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7F8C8D; /* Slate Grey - Professional & Soft */
+    -fx-font-size: 14px;
+    -fx-alignment: CENTER_LEFT;
+    -fx-cursor: hand;
+    -fx-graphic-text-gap: 15px;
+    -fx-padding: 10 0 10 20;
+    -fx-pref-width: 230;
+}
+
+/* 4. Target the ICONS (Normal State) */
+/* This forces the icon to match the text color */
+.menu-button .font-awesome-icon-view, .glyph-icon {
+    -fx-fill: #7F8C8D;
+}
+
+/* 5. Menu Buttons (Hover State) */
+.menu-button:hover {
+    -fx-background-color: #EBF5FB; /* Very Light Blue background */
+    -fx-text-fill: #3498db; /* Bright Blue Text */
+    -fx-border-color: #3498db; /* Blue Accent Bar on left */
+    -fx-border-width: 0 0 0 4;
+}
+
+/* 6. Icons on Hover (Turn Blue) */
+.menu-button:hover .font-awesome-icon-view, .menu-button:hover .glyph-icon {
+    -fx-fill: #3498db;
+}
+
+/* 7. Menu Buttons (Pressed State) */
+.menu-button:pressed {
+    -fx-background-color: #D6EAF8;
+}
+
+/* 8. Special Logout Button - Red on Hover */
+.logout-button:hover {
+    -fx-background-color: #FDEDEC; /* Very Light Red */
+    -fx-text-fill: #E74C3C; /* Red Text */
+    -fx-border-color: #E74C3C;
+}
+
+.logout-button:hover .font-awesome-icon-view, .logout-button:hover .glyph-icon {
+    -fx-fill: #E74C3C;
+}
+
+/* 9. Active Menu Button State */
+.menu-button-active {
+    -fx-background-color: #EBF5FB;
+    -fx-text-fill: #3498db;
+    -fx-border-color: #3498db;
+    -fx-border-width: 0 0 0 4;
+}
+
+/* Force the Icon to stay Blue when active */
+.menu-button-active .font-awesome-icon-view,
+.menu-button-active .glyph-icon {
+    -fx-fill: #3498db;
+}

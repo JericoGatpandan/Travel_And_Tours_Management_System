@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="286.0" prefWidth="475.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
-  <content>
-    <Text layoutX="271.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Trips" wrappingWidth="196.51171875" />
-  </content>
-</ScrollPane>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
+   <children>
+      <VBox layoutX="50.0" layoutY="20.0" prefHeight="360.0" prefWidth="500.0" spacing="15.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="20.0">
+         <children>
+            <Label style="-fx-font-weight: bold;" text="Available Add-ons" />
+            <VBox spacing="10.0">
+               <children>
+                  <CheckBox fx:id="breakfast_check" mnemonicParsing="false" text="Include Daily Breakfast (+500 PHP)" />
+                  <CheckBox fx:id="insurance_check" mnemonicParsing="false" text="Travel Insurance (+1000 PHP)" />
+                  <CheckBox fx:id="guide_check" mnemonicParsing="false" text="Private Tour Guide (+2000 PHP)" />
+                  <CheckBox fx:id="pickup_check" mnemonicParsing="false" text="Airport Pickup / Drop-off (+800 PHP)" />
+               </children>
+            </VBox>
+            
+            <Label style="-fx-font-weight: bold;" text="Special Requests / Notes" />
+            <TextArea fx:id="special_requests_area" prefHeight="150.0" prefWidth="200.0" promptText="Enter any dietary restrictions, allergies, or special needs here..." wrapText="true" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -34,6 +34,10 @@ public class UserMenuController implements Initializable {
         transportation_btn.setOnAction(event -> {onTransportationButtonClicked();});
         payment_btn.setOnAction(event -> {onPaymentButtonClicked();});
         logout_btn.setOnAction(event -> {onLogoutButtonClicked();});
+
+        Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().addListener((observable, oldValue, newValue) -> {
+            updateButtonStyles(newValue);
+        });
     }
 
     private void onNewBookingButtonClicked() {
@@ -69,5 +73,44 @@ public class UserMenuController implements Initializable {
         Model.getInstance().getViewFactory().closeStage(stage);
         Model.getInstance().getViewFactory().showLoginWindow();
         Model.getInstance().setUserLoggedInSuccessfully(false);
+    }
+
+    private void updateButtonStyles(UserMenuOption selectedOption) {
+        // 1. Reset ALL buttons to default style
+        resetButton(dashboard_btn);
+        resetButton(addBooking_btn);
+        resetButton(bookings_btn);
+        resetButton(clients_btn);
+        resetButton(tour_package_btn);
+        resetButton(trips_btn);
+        resetButton(hotel_btn);
+        resetButton(transportation_btn);
+        resetButton(payment_btn);
+
+        // 2. Add "Active" style to the selected one
+        switch (selectedOption) {
+            case DASHBOARD -> setActive(dashboard_btn);
+            case NEW_BOOKING -> setActive(addBooking_btn);
+            case BOOKINGS -> setActive(bookings_btn);
+            case CLIENTS -> setActive(clients_btn);
+            case TOUR_PACKAGES -> setActive(tour_package_btn);
+            case TRIPS -> setActive(trips_btn);
+            case HOTELS -> setActive(hotel_btn);
+            case TRANSPORTATION -> setActive(transportation_btn);
+            case PAYMENTS -> setActive(payment_btn);
+        }
+    }
+
+    private void resetButton(Button btn) {
+        btn.getStyleClass().remove("menu-button-active");
+        if (!btn.getStyleClass().contains("menu-button")) {
+            btn.getStyleClass().add("menu-button");
+        }
+    }
+
+    private void setActive(Button btn) {
+        if (!btn.getStyleClass().contains("menu-button-active")) {
+            btn.getStyleClass().add("menu-button-active");
+        }
     }
 }
