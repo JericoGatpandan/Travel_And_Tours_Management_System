@@ -3,6 +3,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,10 +29,21 @@
                   <VBox spacing="10.0">
                      <children>
                         <Label styleClass="section-label" text="Existing Customer Lookup" />
-                        <HBox alignment="CENTER_LEFT" maxWidth="500.0" spacing="10.0" styleClass="search-box-container">
+                        <VBox spacing="0.0" maxWidth="500.0">
                            <children>
-                              <FontAwesomeIconView glyphName="SEARCH" styleClass="search-icon" />
-                              <TextField fx:id="search" promptText="Search by Name or ID..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                              <HBox alignment="CENTER_LEFT" spacing="10.0" styleClass="search-box-container">
+                                 <children>
+                                    <FontAwesomeIconView glyphName="SEARCH" styleClass="search-icon" />
+                                    <TextField fx:id="search" promptText="Search by Name, Email or ID..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+                                 </children>
+                              </HBox>
+                              <ListView fx:id="search_results_list" maxHeight="200.0" visible="false" managed="false" styleClass="search-results-list" />
+                           </children>
+                        </VBox>
+                        <HBox alignment="CENTER_LEFT" spacing="15.0">
+                           <children>
+                              <Label fx:id="selected_client_lbl" styleClass="selected-client-label" visible="false" managed="false" />
+                              <Label fx:id="clear_selection_btn" onMouseClicked="#handleClearSelection" styleClass="clear-selection-btn" text="✕ Clear" visible="false" managed="false" />
                            </children>
                         </HBox>
                      </children>

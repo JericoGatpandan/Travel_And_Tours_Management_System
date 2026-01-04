@@ -72,15 +72,23 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     /**
-     * Get the list of clients assigned to a specific employee.
+     * Get the list of clients assigned to a specific employee with their
+     * booking information.
      */
     @Override
     public ObservableList<Client> getEmployeeClientList(int employeeId) {
         ObservableList<Client> clientList = FXCollections.observableArrayList();
-        String query = "SELECT * FROM client WHERE assignedEmployeeId = ?";
+        String query = "SELECT DISTINCT c.clientId, c.name, c.email, c.contactNumber, p.Destination, b.Status, "
+                + "CONCAT(MIN(t.StartDate), ' to ', MAX(t.EndDate)) AS TripDates "
+                + "FROM client c "
+                + "LEFT JOIN booking b ON c.clientId = b.ClientID "
+                + "LEFT JOIN package p ON b.PackageID = p.PackageID "
+                + "LEFT JOIN packagetrips pt ON p.PackageID = pt.PackageID "
+                + "LEFT JOIN trip t ON pt.TripID = t.TripID "
+                + "GROUP BY c.clientId, c.name, c.email, c.contactNumber, p.Destination, b.Status "
+                + "ORDER BY c.name ASC";
 
         try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query);) {
-            preparedStatement.setInt(1, employeeId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 while (resultSet.next()) {
@@ -88,10 +96,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                     String name = resultSet.getString("name");
                     String email = resultSet.getString("email");
                     String contactNumber = resultSet.getString("contactNumber");
-                    int assignedEmployeeId = resultSet.getInt("assignedEmployeeId");
+                    String destination = resultSet.getString("Destination") != null ? resultSet.getString("Destination") : "N/A";
+                    String tripStatus = resultSet.getString("Status") != null ? resultSet.getString("Status") : "No Booking";
+                    String tripDates = resultSet.getString("TripDates") != null ? resultSet.getString("TripDates") : "N/A";
 
-                    // You can create Client objects and add them to a list if needed
-                    Client client = new Client(clientId, name, email, contactNumber, assignedEmployeeId);
+                    Client client = new Client(clientId, name, email, contactNumber, destination, tripStatus, tripDates);
                     clientList.add(client);
                 }
             }

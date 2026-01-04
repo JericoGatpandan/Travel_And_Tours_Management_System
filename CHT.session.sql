@@ -53,4 +53,7 @@ GROUP BY b.BookingID, c.name, p.Name, p.Destination
 ORDER BY StartDate ASC;
 
 select * from booking;
+SELECT * from client;
+
+
 

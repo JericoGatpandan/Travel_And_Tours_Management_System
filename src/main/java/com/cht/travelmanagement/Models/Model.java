@@ -146,4 +146,58 @@ public class Model {
         EmployeeRepository employeeRepository = new EmployeeRepositoryImpl();
         employeeRepository.getAuthenticatedUser();
     }
+
+    /**
+     * Get Employee Repository
+     */
+    public EmployeeRepository getEmployeeRepository() {
+        return new EmployeeRepositoryImpl();
+    }
+
+    /**
+     * Get shared booking data
+     */
+    public BookingData getBookingData() {
+        return getUserViewFactory().getBookingData();
+    }
+
+    /**
+     * Get Hotels from Database
+     */
+    public ObservableList<Hotel> getHotels() {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        return bookingRepository.getHotels();
+    }
+
+    /**
+     * Get Vehicles from Database
+     */
+    public ObservableList<Vehicle> getVehicles() {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        return bookingRepository.getVehicles();
+    }
+
+    /**
+     * Search clients by name or email
+     */
+    public ObservableList<Client> searchClients(String searchTerm) {
+        ClientRepository clientRepository = new ClientRepositoryImpl();
+        return clientRepository.searchClients(searchTerm);
+    }
+
+    /**
+     * Create a new booking
+     */
+    public boolean createBooking(BookingData bookingData) {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        return bookingRepository.createBooking(bookingData, getAuthenticatedUser().getEmployeeId());
+    }
+
+    /**
+     * Create a new client
+     */
+    public int createClient(String name, String email, String contactNumber, String address, String customerType) {
+        ClientRepository clientRepository = new ClientRepositoryImpl();
+        return clientRepository.createClient(name, email, contactNumber, address, customerType);
+    }
 }

@@ -1,25 +1,25 @@
 package com.cht.travelmanagement.View;
 
+import java.io.IOException;
+import java.util.Objects;
+
 import com.cht.travelmanagement.Controllers.User.UserController;
+import com.cht.travelmanagement.Models.BookingData;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
-import java.io.IOException;
-import java.util.Objects;
-
-
-public class UserViewFactory extends ViewFactory{
+public class UserViewFactory extends ViewFactory {
 
     // Views
     private AnchorPane userDashboardView;
-    private  BorderPane newBookingView;
-    private  AnchorPane bookingListView;
+    private BorderPane newBookingView;
+    private AnchorPane bookingListView;
     private AnchorPane customerListView;
     private AnchorPane tourPackageListView;
     private AnchorPane tripsListView;
@@ -32,9 +32,11 @@ public class UserViewFactory extends ViewFactory{
     private final ObjectProperty<UserMenuOption> userSelectedMenuItem;
     private final IntegerProperty bookingStep = new SimpleIntegerProperty(1);
 
+    // Shared booking data across all wizard steps
+    private final BookingData bookingData;
 
     // Booking
-    private final ObjectProperty<BookingButtons>  bookingSelectedButton;
+    private final ObjectProperty<BookingButtons> bookingSelectedButton;
     private AnchorPane bookingStep1View;
     private AnchorPane bookingStep2View;
     private AnchorPane bookingStep3View;
@@ -42,11 +44,10 @@ public class UserViewFactory extends ViewFactory{
     private AnchorPane bookingStep5View;
     private AnchorPane bookingStep6View;
 
-
-
     public UserViewFactory() {
         this.userSelectedMenuItem = new SimpleObjectProperty<>();
         this.bookingSelectedButton = new SimpleObjectProperty<>();
+        this.bookingData = new BookingData();
 
         this.fxmlPaths = new FXMLPaths();
     }
@@ -54,8 +55,33 @@ public class UserViewFactory extends ViewFactory{
     public ObjectProperty<UserMenuOption> getUserSelectedMenuItem() {
         return userSelectedMenuItem;
     }
+
     public IntegerProperty getBookingStep() {
         return bookingStep;
+    }
+
+    /**
+     * Get the shared booking data instance
+     */
+    public BookingData getBookingData() {
+        return bookingData;
+    }
+
+    /**
+     * Reset booking wizard to initial state (for starting new booking)
+     */
+    public void resetBookingWizard() {
+        bookingData.reset();
+        bookingStep.set(1);
+
+        // Clear cached views to force reload
+        bookingStep1View = null;
+        bookingStep2View = null;
+        bookingStep3View = null;
+        bookingStep4View = null;
+        bookingStep5View = null;
+        bookingStep6View = null;
+        newBookingView = null;
     }
 
     public AnchorPane getUserDashboardPane() {
@@ -68,8 +94,6 @@ public class UserViewFactory extends ViewFactory{
         }
         return userDashboardView;
     }
-
-
 
     public void showUserDashboardWindow() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/User/User-view.fxml"));
@@ -99,6 +123,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return bookingListView;
     }
+
     public AnchorPane getClientListView() {
         if (customerListView == null) {
             try {
@@ -109,6 +134,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return customerListView;
     }
+
     public AnchorPane getTourPackageListView() {
         if (tourPackageListView == null) {
             try {
@@ -119,6 +145,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return tourPackageListView;
     }
+
     public AnchorPane getTripsListView() {
         if (tripsListView == null) {
             try {
@@ -129,6 +156,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return tripsListView;
     }
+
     public AnchorPane getHotelsListView() {
         if (hotelsListView == null) {
             try {
@@ -150,7 +178,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return transportationListView;
     }
-    
+
     public AnchorPane getPaymentsListView() {
         if (paymentsListView == null) {
             try {
@@ -165,8 +193,6 @@ public class UserViewFactory extends ViewFactory{
     /*
      * Booking Process
      */
-
-
     public ObjectProperty<BookingButtons> getBookingSelectedButton() {
         return bookingSelectedButton;
     }
@@ -192,6 +218,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return bookingStep3View;
     }
+
     public AnchorPane getBookingStep4View() {
         if (bookingStep4View == null) {
             try {
@@ -213,6 +240,7 @@ public class UserViewFactory extends ViewFactory{
         }
         return bookingStep5View;
     }
+
     public AnchorPane getBookingStep6View() {
         if (bookingStep6View == null) {
             try {
@@ -234,6 +262,5 @@ public class UserViewFactory extends ViewFactory{
         }
         return bookingStep1View;
     }
-
 
 }

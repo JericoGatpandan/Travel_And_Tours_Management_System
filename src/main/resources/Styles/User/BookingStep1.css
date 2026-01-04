@@ -69,3 +69,58 @@
 .choice-box {
     -fx-padding: 4; /* Adjustment for dropdown alignment */
 }
+
+/* SEARCH RESULTS DROPDOWN */
+.search-results-list {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 10;
+    -fx-border-color: #E0E5F2;
+    -fx-border-radius: 10;
+    -fx-border-width: 1;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 4);
+}
+
+.search-results-list .list-cell {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-radius: 8;
+}
+
+.search-results-list .list-cell:filled:hover {
+    -fx-background-color: #F4F7FE;
+    -fx-cursor: hand;
+}
+
+.search-results-list .list-cell:filled:selected {
+    -fx-background-color: #E8E6FF;
+}
+
+.search-results-list .list-cell:filled:selected:hover {
+    -fx-background-color: #D6D3FF;
+}
+
+/* Selected client indicator */
+.selected-client-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #27ae60;
+    -fx-padding: 10 15;
+    -fx-background-color: #e8f8f0;
+    -fx-background-radius: 8;
+}
+
+/* Clear selection button */
+.clear-selection-btn {
+    -fx-font-size: 12px;
+    -fx-text-fill: #e74c3c;
+    -fx-cursor: hand;
+    -fx-padding: 10 15;
+    -fx-background-color: #ffeaea;
+    -fx-background-radius: 8;
+}
+
+.clear-selection-btn:hover {
+    -fx-background-color: #ffd5d5;
+    -fx-text-fill: #c0392b;
+}
