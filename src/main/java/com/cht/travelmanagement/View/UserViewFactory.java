@@ -11,6 +11,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -19,13 +20,13 @@ public class UserViewFactory extends ViewFactory {
     // Views
     private AnchorPane userDashboardView;
     private BorderPane newBookingView;
-    private AnchorPane bookingListView;
-    private AnchorPane customerListView;
-    private AnchorPane tourPackageListView;
-    private AnchorPane tripsListView;
-    private AnchorPane hotelsListView;
-    private AnchorPane transportationListView;
-    private AnchorPane paymentsListView;
+    private Parent bookingListView;
+    private Parent customerListView;
+    private Parent tourPackageListView;
+    private Parent tripsListView;
+    private Parent hotelsListView;
+    private Parent transportationListView;
+    private Parent paymentsListView;
 
     private final FXMLPaths fxmlPaths;
     private UserController userController;
@@ -113,7 +114,7 @@ public class UserViewFactory extends ViewFactory {
         return newBookingView;
     }
 
-    public AnchorPane getBookingListView() {
+    public Parent getBookingListView() {
         if (bookingListView == null) {
             try {
                 bookingListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Bookings-view.fxml")));
@@ -124,7 +125,7 @@ public class UserViewFactory extends ViewFactory {
         return bookingListView;
     }
 
-    public AnchorPane getClientListView() {
+    public Parent getClientListView() {
         if (customerListView == null) {
             try {
                 customerListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Clients-view.fxml")));
@@ -135,7 +136,7 @@ public class UserViewFactory extends ViewFactory {
         return customerListView;
     }
 
-    public AnchorPane getTourPackageListView() {
+    public Parent getTourPackageListView() {
         if (tourPackageListView == null) {
             try {
                 tourPackageListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/TourPackages-view.fxml")));
@@ -146,7 +147,7 @@ public class UserViewFactory extends ViewFactory {
         return tourPackageListView;
     }
 
-    public AnchorPane getTripsListView() {
+    public Parent getTripsListView() {
         if (tripsListView == null) {
             try {
                 tripsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Trips-view.fxml")));
@@ -157,7 +158,7 @@ public class UserViewFactory extends ViewFactory {
         return tripsListView;
     }
 
-    public AnchorPane getHotelsListView() {
+    public Parent getHotelsListView() {
         if (hotelsListView == null) {
             try {
                 hotelsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Accommodations-view.fxml")));
@@ -168,7 +169,7 @@ public class UserViewFactory extends ViewFactory {
         return hotelsListView;
     }
 
-    public AnchorPane getTransportationListView() {
+    public Parent getTransportationListView() {
         if (transportationListView == null) {
             try {
                 transportationListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Transportation-view.fxml")));
@@ -179,7 +180,7 @@ public class UserViewFactory extends ViewFactory {
         return transportationListView;
     }
 
-    public AnchorPane getPaymentsListView() {
+    public Parent getPaymentsListView() {
         if (paymentsListView == null) {
             try {
                 paymentsListView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Payments-view.fxml")));

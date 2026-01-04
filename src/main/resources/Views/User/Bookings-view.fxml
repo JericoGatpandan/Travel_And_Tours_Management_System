@@ -4,59 +4,84 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" styleClass="bookings-container" stylesheets="@../../Styles/User/Dashboard.css;@../../Styles/User/BookingItem.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingsController">
-   <VBox spacing="20" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding>
-      
-      <!-- Header Section -->
-      <VBox prefHeight="41.0" prefWidth="772.0" spacing="8">
-         <Label styleClass="header-title" text="Bookings" />
-         <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header-subtitle" text="Latest bookings and activities" wrappingWidth="600" />
-      </VBox>
-      <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="1240.0">
-         <children>
-            <FontAwesomeIconView glyphName="SEARCH" />
-            <TextField fx:id="search_fld" prefHeight="32.0" prefWidth="1006.0" />
-            <Pane prefHeight="47.0" prefWidth="2.0" HBox.hgrow="ALWAYS" />
-      
-                  <!-- New Booking Button -->
-            <Button fx:id="newBooking_btn" mnemonicParsing="false" prefHeight="37.0" prefWidth="101.0" styleClass="primary-button" text="New Booking">
-               <graphic>
-                  <FontAwesomeIconView glyphName="PLUS" />
-               </graphic>
+<ScrollPane fitToWidth="true" styleClass="page-scroll-pane" stylesheets="@../../Styles/Common.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingsController">
+    <VBox spacing="24" styleClass="page-container">
+        <padding>
+            <Insets bottom="32" left="32" right="32" top="32" />
+        </padding>
+
+        <!-- Header Section -->
+        <VBox spacing="8">
+            <HBox alignment="CENTER_LEFT" spacing="16">
+                <FontAwesomeIconView glyphName="CALENDAR_CHECK_ALT" size="32" styleClass="page-icon" />
+                <VBox spacing="4">
+                    <Label styleClass="page-title" text="Bookings" />
+                    <Label styleClass="page-subtitle" text="Manage all travel bookings and reservations" />
+                </VBox>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="bookingCount_lbl" styleClass="record-count" text="0 bookings" />
+            </HBox>
+        </VBox>
+
+        <!-- Search and Actions Bar -->
+        <HBox alignment="CENTER_LEFT" spacing="16" styleClass="toolbar">
+            <HBox alignment="CENTER_LEFT" spacing="8" styleClass="search-container" HBox.hgrow="ALWAYS">
+                <FontAwesomeIconView glyphName="SEARCH" size="14" styleClass="search-icon" />
+                <TextField fx:id="search_fld" promptText="Search by client, destination, or package..." styleClass="search-field" HBox.hgrow="ALWAYS" />
+            </HBox>
+            <Button fx:id="newBooking_btn" mnemonicParsing="false" styleClass="btn-primary">
+                <graphic>
+                    <FontAwesomeIconView glyphName="PLUS" size="14" />
+                </graphic>
+                <text>New Booking</text>
             </Button>
-         </children>
-      </HBox>
+        </HBox>
 
-                        <!-- Table Container -->
-      <VBox spacing="0" styleClass="booking-table-wrapper" VBox.vgrow="ALWAYS">
-         <TableView fx:id="booking_table" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
-           <columns>
-             <TableColumn fx:id="bookingId_col" prefWidth="75.0" text="Booking ID" />
-             <TableColumn fx:id="client_col" prefWidth="75.0" text="Client" />
-               <TableColumn fx:id="destination_col" prefWidth="75.0" text="Destination" />
-               <TableColumn fx:id="package_col" prefWidth="75.0" text="Package" />
-               <TableColumn fx:id="startDate_col" prefWidth="75.0" text="Start Date" />
-               <TableColumn fx:id="endDate_col" prefWidth="75.0" text="End Date" />
-               <TableColumn fx:id="status_col" prefWidth="75.0" text="Status" />
-           </columns>
-            <columnResizePolicy>
-               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-         </TableView>
-         
-                        </VBox>
-      
-   </VBox>
-</AnchorPane>
+        <!-- Stats Cards -->
+        <HBox spacing="16">
+            <VBox spacing="4" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                <Label fx:id="totalBookings_lbl" styleClass="stat-value" text="0" />
+                <Label styleClass="stat-label" text="Total Bookings" />
+            </VBox>
+            <VBox spacing="4" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                <Label fx:id="confirmedBookings_lbl" styleClass="stat-value stat-success" text="0" />
+                <Label styleClass="stat-label" text="Confirmed" />
+            </VBox>
+            <VBox spacing="4" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                <Label fx:id="pendingBookings_lbl" styleClass="stat-value stat-warning" text="0" />
+                <Label styleClass="stat-label" text="Pending" />
+            </VBox>
+            <VBox spacing="4" styleClass="stat-card" HBox.hgrow="ALWAYS">
+                <Label fx:id="cancelledBookings_lbl" styleClass="stat-value stat-danger" text="0" />
+                <Label styleClass="stat-label" text="Cancelled" />
+            </VBox>
+        </HBox>
+
+        <!-- Table Section -->
+        <VBox spacing="0" styleClass="content-card" VBox.vgrow="ALWAYS">
+            <TableView fx:id="booking_table" styleClass="data-table" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="bookingId_col" minWidth="80" text="ID" />
+                    <TableColumn fx:id="client_col" minWidth="150" text="Client" />
+                    <TableColumn fx:id="destination_col" minWidth="140" text="Destination" />
+                    <TableColumn fx:id="package_col" minWidth="140" text="Package" />
+                    <TableColumn fx:id="startDate_col" minWidth="100" text="Start Date" />
+                    <TableColumn fx:id="endDate_col" minWidth="100" text="End Date" />
+                    <TableColumn fx:id="status_col" minWidth="100" text="Status" />
+                    <TableColumn fx:id="actions_col" minWidth="120" text="Actions" />
+                </columns>
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                </columnResizePolicy>
+            </TableView>
+        </VBox>
+    </VBox>
+</ScrollPane>

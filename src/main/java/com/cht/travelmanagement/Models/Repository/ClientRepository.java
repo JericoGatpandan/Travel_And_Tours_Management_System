@@ -10,9 +10,9 @@ public interface ClientRepository {
 
     ObservableList<Client> searchClients(String searchTerm);
 
-    void deleteClient();
+    boolean deleteClient(int clientId);
 
-    void updateClient();
+    boolean updateClient(int clientId, String name, String email, String contactNumber, String address, String customerType);
 
     void createClient();
 

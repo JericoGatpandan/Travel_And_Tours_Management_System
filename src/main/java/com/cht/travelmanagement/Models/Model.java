@@ -1,14 +1,20 @@
 package com.cht.travelmanagement.Models;
 
 import com.cht.travelmanagement.Controllers.User.BookingWizard.BookingNavigationController;
+import com.cht.travelmanagement.Models.Repository.AccommodationRepository;
 import com.cht.travelmanagement.Models.Repository.BookingRepository;
 import com.cht.travelmanagement.Models.Repository.ClientRepository;
 import com.cht.travelmanagement.Models.Repository.EmployeeRepository;
+import com.cht.travelmanagement.Models.Repository.Implementation.AccommodationRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.BookingRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.ClientRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.EmployeeRepositoryImpl;
+import com.cht.travelmanagement.Models.Repository.Implementation.PaymentsRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.Implementation.TourPackageRepositoryImpl;
+import com.cht.travelmanagement.Models.Repository.Implementation.TripRepositoryImpl;
+import com.cht.travelmanagement.Models.Repository.PaymentsRepository;
 import com.cht.travelmanagement.Models.Repository.TourPackageRepository;
+import com.cht.travelmanagement.Models.Repository.TripRepository;
 import com.cht.travelmanagement.View.AdminViewFactory;
 import com.cht.travelmanagement.View.UserViewFactory;
 import com.cht.travelmanagement.View.ViewFactory;
@@ -199,5 +205,45 @@ public class Model {
     public int createClient(String name, String email, String contactNumber, String address, String customerType) {
         ClientRepository clientRepository = new ClientRepositoryImpl();
         return clientRepository.createClient(name, email, contactNumber, address, customerType);
+    }
+
+    /**
+     * Update an existing client
+     */
+    public boolean updateClient(int clientId, String name, String email, String contactNumber, String address, String customerType) {
+        ClientRepository clientRepository = new ClientRepositoryImpl();
+        return clientRepository.updateClient(clientId, name, email, contactNumber, address, customerType);
+    }
+
+    /**
+     * Delete a client
+     */
+    public boolean deleteClient(int clientId) {
+        ClientRepository clientRepository = new ClientRepositoryImpl();
+        return clientRepository.deleteClient(clientId);
+    }
+
+    /**
+     * Get all payments
+     */
+    public ObservableList<Payment> getAllPayments() {
+        PaymentsRepository paymentsRepository = new PaymentsRepositoryImpl();
+        return paymentsRepository.getAllPayments();
+    }
+
+    /**
+     * Get all trips
+     */
+    public ObservableList<Trip> getAllTrips() {
+        TripRepository tripRepository = new TripRepositoryImpl();
+        return tripRepository.getAllTrips();
+    }
+
+    /**
+     * Get all accommodations
+     */
+    public ObservableList<Accommodation> getAllAccommodations() {
+        AccommodationRepository accommodationRepository = new AccommodationRepositoryImpl();
+        return accommodationRepository.getAllAccommodations();
     }
 }

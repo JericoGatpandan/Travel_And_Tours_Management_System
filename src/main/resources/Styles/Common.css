@@ -1,0 +1,446 @@
+/* ============================================
+   COMMON STYLES - Travel Management System
+   Modern, Clean Desktop Application Theme
+   ============================================ */
+
+/* ============ COLOR VARIABLES (via classes) ============ */
+/* Primary: #3498db (Blue)
+   Secondary: #2C3E50 (Dark Blue/Grey)
+   Success: #27ae60 (Green)
+   Warning: #f39c12 (Orange)
+   Danger: #e74c3c (Red)
+   Light: #F8F9FB (Background)
+   Border: #E0E5F2
+*/
+
+/* ============ LAYOUT CONTAINERS ============ */
+.page-container {
+    -fx-background-color: #F8F9FB;
+    -fx-padding: 25;
+    -fx-spacing: 20;
+}
+
+.content-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 0);
+    -fx-padding: 20;
+}
+
+.content-card-no-padding {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 0);
+}
+
+/* ============ TYPOGRAPHY ============ */
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+.page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7F8C8D;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+.section-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: #95A5A6;
+}
+
+.label-bold {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2C3E50;
+}
+
+.label-muted {
+    -fx-text-fill: #7F8C8D;
+}
+
+.label-small {
+    -fx-font-size: 11px;
+    -fx-text-fill: #95A5A6;
+}
+
+/* ============ BUTTONS ============ */
+.btn-primary {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-font-size: 13px;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.4), 10, 0, 0, 0);
+}
+
+.btn-primary:pressed {
+    -fx-background-color: #1f6aa5;
+}
+
+.btn-primary .glyph-icon {
+    -fx-fill: white;
+}
+
+.btn-success {
+    -fx-background-color: #27ae60;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-font-size: 13px;
+}
+
+.btn-success:hover {
+    -fx-background-color: #219a52;
+    -fx-effect: dropshadow(three-pass-box, rgba(39, 174, 96, 0.4), 10, 0, 0, 0);
+}
+
+.btn-success .glyph-icon {
+    -fx-fill: white;
+}
+
+.btn-danger {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-font-size: 13px;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #c0392b;
+    -fx-effect: dropshadow(three-pass-box, rgba(231, 76, 60, 0.4), 10, 0, 0, 0);
+}
+
+.btn-danger .glyph-icon {
+    -fx-fill: white;
+}
+
+.btn-secondary {
+    -fx-background-color: #ecf0f1;
+    -fx-text-fill: #2C3E50;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+    -fx-padding: 10 20;
+    -fx-font-size: 13px;
+}
+
+.btn-secondary:hover {
+    -fx-background-color: #d5dbdb;
+}
+
+.btn-secondary .glyph-icon {
+    -fx-fill: #2C3E50;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-border-color: #3498db;
+    -fx-border-radius: 8;
+    -fx-border-width: 2;
+    -fx-text-fill: #3498db;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 8 18;
+    -fx-font-size: 13px;
+}
+
+.btn-outline:hover {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+}
+
+.btn-icon {
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+    -fx-padding: 8;
+    -fx-background-radius: 6;
+}
+
+.btn-icon:hover {
+    -fx-background-color: #ecf0f1;
+}
+
+.btn-icon-danger:hover {
+    -fx-background-color: #fdeaea;
+}
+
+.btn-icon .glyph-icon {
+    -fx-fill: #7F8C8D;
+}
+
+.btn-icon:hover .glyph-icon {
+    -fx-fill: #3498db;
+}
+
+.btn-icon-danger:hover .glyph-icon {
+    -fx-fill: #e74c3c;
+}
+
+/* ============ FORM INPUTS ============ */
+.text-field, .text-area, .choice-box, .combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #E0E5F2;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 12;
+    -fx-font-size: 13px;
+}
+
+.text-field:focused, .text-area:focused, .choice-box:focused, .combo-box:focused {
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(three-pass-box, rgba(52, 152, 219, 0.2), 5, 0, 0, 0);
+}
+
+.text-field:disabled, .text-area:disabled {
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #95A5A6;
+}
+
+/* Search field with icon */
+.search-container {
+    -fx-background-color: white;
+    -fx-border-color: #E0E5F2;
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+    -fx-padding: 5 15;
+}
+
+.search-container:focused-within {
+    -fx-border-color: #3498db;
+}
+
+.search-field {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 8 10;
+}
+
+.search-icon {
+    -fx-fill: #95A5A6;
+}
+
+/* ============ TABLE VIEW ============ */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #F8F9FB;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: #E0E5F2;
+    -fx-padding: 12 10;
+}
+
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #7F8C8D;
+    -fx-font-size: 12px;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #F0F0F0;
+    -fx-padding: 8 0;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #F8F9FB;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #EBF5FB;
+}
+
+.table-view .table-row-cell:selected .text {
+    -fx-fill: #2C3E50;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #2C3E50;
+    -fx-font-size: 13px;
+    -fx-padding: 10;
+}
+
+/* Remove default focus border */
+.table-view:focused {
+    -fx-background-insets: 0;
+}
+
+/* ============ STATUS BADGES ============ */
+.badge {
+    -fx-padding: 4 12;
+    -fx-background-radius: 12;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+
+.badge-success {
+    -fx-background-color: #d4edda;
+    -fx-text-fill: #155724;
+}
+
+.badge-warning {
+    -fx-background-color: #fff3cd;
+    -fx-text-fill: #856404;
+}
+
+.badge-danger {
+    -fx-background-color: #f8d7da;
+    -fx-text-fill: #721c24;
+}
+
+.badge-info {
+    -fx-background-color: #d1ecf1;
+    -fx-text-fill: #0c5460;
+}
+
+.badge-primary {
+    -fx-background-color: #cce5ff;
+    -fx-text-fill: #004085;
+}
+
+.badge-secondary {
+    -fx-background-color: #e2e3e5;
+    -fx-text-fill: #383d41;
+}
+
+/* ============ CARDS ============ */
+.info-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.06), 8, 0, 0, 0);
+    -fx-padding: 20;
+}
+
+.info-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 12, 0, 0, 0);
+}
+
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 0);
+    -fx-padding: 20;
+}
+
+/* ============ SCROLL PANE ============ */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:vertical,
+.scroll-pane > .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .scroll-bar:vertical .thumb,
+.scroll-pane > .scroll-bar:horizontal .thumb {
+    -fx-background-color: #d0d0d0;
+    -fx-background-radius: 4;
+}
+
+.scroll-pane > .scroll-bar:vertical .thumb:hover,
+.scroll-pane > .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: #b0b0b0;
+}
+
+/* ============ DIALOGS / MODALS ============ */
+.dialog-pane {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-padding: 20;
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-padding: 15 0 0 0;
+}
+
+/* ============ SEPARATORS ============ */
+.separator {
+    -fx-padding: 10 0;
+}
+
+.separator .line {
+    -fx-border-color: #E0E5F2;
+    -fx-border-width: 1 0 0 0;
+}
+
+/* ============ TOOLTIPS ============ */
+.tooltip {
+    -fx-background-color: #2C3E50;
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 12px;
+}
+
+/* ============ ICONS ============ */
+.icon-primary {
+    -fx-fill: #3498db;
+}
+
+.icon-success {
+    -fx-fill: #27ae60;
+}
+
+.icon-warning {
+    -fx-fill: #f39c12;
+}
+
+.icon-danger {
+    -fx-fill: #e74c3c;
+}
+
+.icon-muted {
+    -fx-fill: #95A5A6;
+}
+
+/* ============ EMPTY STATE ============ */
+.empty-state {
+    -fx-alignment: center;
+    -fx-padding: 60;
+}
+
+.empty-state-icon {
+    -fx-fill: #d0d0d0;
+}
+
+.empty-state-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7F8C8D;
+}
+
+.empty-state-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #95A5A6;
+}

@@ -90,13 +90,45 @@ public class ClientRepositoryImpl implements ClientRepository {
     }
 
     @Override
-    public void deleteClient() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean deleteClient(int clientId) {
+        String query = "DELETE FROM client WHERE clientId = ?";
+
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, clientId);
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error deleting client: " + e.getMessage());
+            // Check if it's a foreign key constraint error
+            if (e.getMessage().contains("foreign key constraint")) {
+                System.err.println("Cannot delete client: Client has existing bookings");
+            }
+            return false;
+        }
     }
 
     @Override
-    public void updateClient() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public boolean updateClient(int clientId, String name, String email, String contactNumber, String address, String customerType) {
+        String query = "UPDATE client SET name = ?, email = ?, contactNumber = ?, address = ?, customerType = ? WHERE clientId = ?";
+
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, email);
+            preparedStatement.setString(3, contactNumber);
+            preparedStatement.setString(4, address);
+            preparedStatement.setString(5, customerType);
+            preparedStatement.setInt(6, clientId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Error updating client: " + e.getMessage());
+            return false;
+        }
     }
 
     @Override
