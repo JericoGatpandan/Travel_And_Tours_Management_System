@@ -200,6 +200,14 @@ public class Model {
     }
 
     /**
+     * Cancel a booking by ID
+     */
+    public boolean cancelBooking(int bookingId) {
+        BookingRepository bookingRepository = new BookingRepositoryImpl();
+        return bookingRepository.cancelBooking(bookingId);
+    }
+
+    /**
      * Create a new client
      */
     public int createClient(String name, String email, String contactNumber, String address, String customerType) {

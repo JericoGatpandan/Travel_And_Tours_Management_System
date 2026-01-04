@@ -18,6 +18,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -145,7 +146,7 @@ public class BookingsController implements Initializable {
         // Actions column
         actions_col.setCellFactory(column -> new TableCell<>() {
             private final Button viewBtn = new Button();
-            private final Button editBtn = new Button();
+            private final Button cancelBtn = new Button();
             private final HBox actions = new HBox(8);
 
             {
@@ -156,15 +157,15 @@ public class BookingsController implements Initializable {
                 viewBtn.getStyleClass().addAll("btn-icon", "btn-info");
                 viewBtn.setTooltip(new Tooltip("View Details"));
 
-                FontAwesomeIconView editIcon = new FontAwesomeIconView();
-                editIcon.setGlyphName("PENCIL");
-                editIcon.setSize("14");
-                editBtn.setGraphic(editIcon);
-                editBtn.getStyleClass().addAll("btn-icon", "btn-warning");
-                editBtn.setTooltip(new Tooltip("Edit Booking"));
+                FontAwesomeIconView cancelIcon = new FontAwesomeIconView();
+                cancelIcon.setGlyphName("BAN");
+                cancelIcon.setSize("14");
+                cancelBtn.setGraphic(cancelIcon);
+                cancelBtn.getStyleClass().addAll("btn-icon", "btn-danger");
+                cancelBtn.setTooltip(new Tooltip("Cancel Booking"));
 
                 actions.setAlignment(Pos.CENTER);
-                actions.getChildren().addAll(viewBtn, editBtn);
+                actions.getChildren().addAll(viewBtn, cancelBtn);
             }
 
             @Override
@@ -175,7 +176,15 @@ public class BookingsController implements Initializable {
                 } else {
                     Booking booking = getTableView().getItems().get(getIndex());
                     viewBtn.setOnAction(e -> handleViewBooking(booking));
-                    editBtn.setOnAction(e -> handleEditBooking(booking));
+                    cancelBtn.setOnAction(e -> handleCancelBooking(booking));
+
+                    // Disable cancel button if already cancelled or completed
+                    String status = booking.getStatus();
+                    boolean canCancel = status != null
+                            && !status.equalsIgnoreCase("CANCELLED")
+                            && !status.equalsIgnoreCase("COMPLETED");
+                    cancelBtn.setDisable(!canCancel);
+
                     setGraphic(actions);
                 }
             }
@@ -277,12 +286,44 @@ public class BookingsController implements Initializable {
         alert.showAndWait();
     }
 
-    private void handleEditBooking(Booking booking) {
-        // Could implement edit dialog similar to ClientsController
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Edit Booking");
-        alert.setHeaderText("Edit functionality");
-        alert.setContentText("Edit booking #BK-" + String.format("%04d", booking.getBookingId()));
-        alert.showAndWait();
+    private void handleCancelBooking(Booking booking) {
+        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmAlert.setTitle("Cancel Booking");
+        confirmAlert.setHeaderText("Cancel Booking #BK-" + String.format("%04d", booking.getBookingId()));
+        confirmAlert.setContentText(
+                String.format("Are you sure you want to cancel this booking?\n\n"
+                        + "Client: %s\n"
+                        + "Package: %s\n"
+                        + "Destination: %s\n\n"
+                        + "This action cannot be undone.",
+                        booking.getClientName(),
+                        booking.getPackageName(),
+                        booking.getDestination())
+        );
+
+        confirmAlert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                boolean success = Model.getInstance().cancelBooking(booking.getBookingId());
+
+                if (success) {
+                    // Update the booking status in the local list
+                    booking.setStatus("CANCELLED");
+                    booking_table.refresh();
+                    updateStats();
+
+                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                    successAlert.setTitle("Success");
+                    successAlert.setHeaderText(null);
+                    successAlert.setContentText("Booking #BK-" + String.format("%04d", booking.getBookingId()) + " has been cancelled.");
+                    successAlert.showAndWait();
+                } else {
+                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                    errorAlert.setTitle("Error");
+                    errorAlert.setHeaderText("Failed to Cancel Booking");
+                    errorAlert.setContentText("An error occurred while cancelling the booking. Please try again.");
+                    errorAlert.showAndWait();
+                }
+            }
+        });
     }
 }

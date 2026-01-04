@@ -20,4 +20,6 @@ public interface BookingRepository {
     ObservableList<Vehicle> getVehicles();
 
     boolean createBooking(BookingData bookingData, int employeeId);
+
+    boolean cancelBooking(int bookingId);
 }

@@ -142,6 +142,19 @@ public class BookingRepositoryImpl implements BookingRepository {
         return Math.min(score, 5);
     }
 
+    @Override
+    public boolean cancelBooking(int bookingId) {
+        String query = "UPDATE booking SET Status = 'cancelled' WHERE BookingID = ?";
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, bookingId);
+            int rowsAffected = preparedStatement.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            System.err.println("Error cancelling booking: " + e.getMessage());
+            return false;
+        }
+    }
+
     private int calculateHotelPrice(int rating) {
         return switch (rating) {
             case 3 ->
@@ -185,10 +198,12 @@ public class BookingRepositoryImpl implements BookingRepository {
         if (capacity <= 4) {
             return 1500; // Sedan
 
-                }if (capacity <= 10) {
+        }
+        if (capacity <= 10) {
             return 2500; // Van
 
-                }return 5000; // Bus
+        }
+        return 5000; // Bus
     }
 
     @Override
