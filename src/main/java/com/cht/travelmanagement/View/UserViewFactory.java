@@ -18,7 +18,7 @@ import javafx.scene.layout.BorderPane;
 public class UserViewFactory extends ViewFactory {
 
     // Views
-    private AnchorPane userDashboardView;
+    private Parent userDashboardView;
     private BorderPane newBookingView;
     private Parent bookingListView;
     private Parent customerListView;
@@ -85,7 +85,7 @@ public class UserViewFactory extends ViewFactory {
         newBookingView = null;
     }
 
-    public AnchorPane getUserDashboardPane() {
+    public Parent getUserDashboardPane() {
         if (userDashboardView == null) {
             try {
                 userDashboardView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Dashboard-view.fxml")));
