@@ -3,6 +3,7 @@ package com.cht.travelmanagement.View;
 import java.io.IOException;
 import java.util.Objects;
 
+import com.cht.travelmanagement.Controllers.User.DashboardController;
 import com.cht.travelmanagement.Controllers.User.UserController;
 import com.cht.travelmanagement.Models.BookingData;
 
@@ -19,8 +20,10 @@ public class UserViewFactory extends ViewFactory {
 
     // Views
     private Parent userDashboardView;
+    private DashboardController dashboardController; // Capture the controller
     private BorderPane newBookingView;
     private Parent bookingListView;
+
     private Parent customerListView;
     private Parent tourPackageListView;
     private Parent tripsListView;
@@ -85,10 +88,16 @@ public class UserViewFactory extends ViewFactory {
         newBookingView = null;
     }
 
+    public DashboardController getDashboardController() {
+        return dashboardController;
+    }
+
     public Parent getUserDashboardPane() {
         if (userDashboardView == null) {
             try {
-                userDashboardView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/Views/User/Dashboard-view.fxml")));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Views/User/Dashboard-view.fxml"));
+                userDashboardView = loader.load();
+                dashboardController = loader.getController();
             } catch (Exception e) {
                 e.printStackTrace();
             }

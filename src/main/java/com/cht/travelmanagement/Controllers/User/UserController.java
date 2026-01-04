@@ -22,7 +22,14 @@ public class UserController implements Initializable {
                 case HOTELS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getHotelsListView());
                 case TRANSPORTATION -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getTransportationListView());
                 case PAYMENTS -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getPaymentsListView());
-                default -> user_parent.setCenter(Model.getInstance().getUserViewFactory().getUserDashboardPane());
+                default -> {
+                    user_parent.setCenter(Model.getInstance().getUserViewFactory().getUserDashboardPane());
+                    // Refresh dashboard data when navigating back to it
+                    DashboardController dashboard = Model.getInstance().getUserViewFactory().getDashboardController();
+                    if (dashboard != null) {
+                        dashboard.refresh();
+                    }
+                }
             }
         });
     }

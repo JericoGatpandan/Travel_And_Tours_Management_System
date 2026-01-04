@@ -75,6 +75,14 @@ public class DashboardController implements Initializable {
         getDashboardData();
     }
 
+    /**
+     * Refreshes the dashboard data.
+     * Called when the user navigates back to this view.
+     */
+    public void refresh() {
+        getDashboardData();
+    }
+
     private void onNewBookingButtonClicked() {
         Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.NEW_BOOKING);
     }
