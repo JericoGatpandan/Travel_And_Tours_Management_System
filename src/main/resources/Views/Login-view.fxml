@@ -64,9 +64,19 @@
             <!-- Password Field -->
             <VBox spacing="8">
                 <Label styleClass="field-label" text="Password" />
-                <HBox alignment="CENTER_LEFT" spacing="12" styleClass="input-wrapper">
-                    <FontAwesomeIconView glyphName="LOCK" size="16" styleClass="input-icon" />
+                <HBox alignment="CENTER_LEFT" spacing="0" styleClass="input-wrapper">
+                    <FontAwesomeIconView glyphName="LOCK" size="16" styleClass="input-icon">
+                        <HBox.margin>
+                            <Insets left="0" right="12" />
+                        </HBox.margin>
+                    </FontAwesomeIconView>
                     <PasswordField fx:id="passwordPasswordField" promptText="Enter your password" styleClass="login-password-field" HBox.hgrow="ALWAYS" />
+                    <TextField fx:id="passwordTextField" managed="false" promptText="Enter your password" styleClass="login-text-field" visible="false" HBox.hgrow="ALWAYS" />
+                    <Button fx:id="togglePasswordBtn" mnemonicParsing="false" styleClass="toggle-password-btn">
+                        <graphic>
+                            <FontAwesomeIconView fx:id="togglePasswordIcon" glyphName="EYE" size="16" styleClass="input-icon" />
+                        </graphic>
+                    </Button>
                 </HBox>
             </VBox>
         </VBox>

@@ -8,7 +8,9 @@ import com.cht.travelmanagement.Models.Repository.EmployeeRepository;
 import com.cht.travelmanagement.Models.Repository.Implementation.EmployeeRepositoryImpl;
 import com.cht.travelmanagement.View.AccountType;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -19,14 +21,27 @@ import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
+    @FXML
     public ChoiceBox<AccountType> acc_selector;
+    @FXML
     public Label loginMessageLabel;
+    @FXML
     public TextField usernameTextField;
+    @FXML
     public PasswordField passwordPasswordField;
+    @FXML
+    public TextField passwordTextField;
+    @FXML
     public Button loginButton;
+    @FXML
     public Button cancelButton;
+    @FXML
+    public Button togglePasswordBtn;
+    @FXML
+    public FontAwesomeIconView togglePasswordIcon;
 
     private final EmployeeRepository employeeRepository;
+    private boolean passwordVisible = false;
 
     public LoginController() {
         this.employeeRepository = new EmployeeRepositoryImpl();
@@ -40,8 +55,36 @@ public class LoginController implements Initializable {
         acc_selector.valueProperty().addListener(observable -> Model.getInstance().getViewFactory().setLoggedInAccountType(acc_selector.getValue()));
         loginButton.setOnAction(event -> onLoginButtonClicked());
 
+        // Setup password toggle
+        setupPasswordToggle();
+
         // Exit Application
         cancelButton.setOnAction(event -> Model.getInstance().getViewFactory().closeStage((Stage) cancelButton.getScene().getWindow()));
+    }
+
+    private void setupPasswordToggle() {
+        // Bind the text fields bidirectionally
+        passwordTextField.textProperty().bindBidirectional(passwordPasswordField.textProperty());
+
+        // Toggle button action
+        togglePasswordBtn.setOnAction(event -> {
+            passwordVisible = !passwordVisible;
+            if (passwordVisible) {
+                // Show password
+                passwordPasswordField.setVisible(false);
+                passwordPasswordField.setManaged(false);
+                passwordTextField.setVisible(true);
+                passwordTextField.setManaged(true);
+                togglePasswordIcon.setGlyphName("EYE_SLASH");
+            } else {
+                // Hide password
+                passwordTextField.setVisible(false);
+                passwordTextField.setManaged(false);
+                passwordPasswordField.setVisible(true);
+                passwordPasswordField.setManaged(true);
+                togglePasswordIcon.setGlyphName("EYE");
+            }
+        });
     }
 
     private void onLoginButtonClicked() {

@@ -227,3 +227,24 @@
     -fx-font-size: 11px;
     -fx-text-fill: rgba(255, 255, 255, 0.7);
 }
+
+/* Toggle password button */
+.toggle-password-btn {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 8 10;
+    -fx-cursor: hand;
+}
+
+.toggle-password-btn:hover {
+    -fx-background-color: rgba(0, 0, 0, 0.05);
+    -fx-background-radius: 5;
+}
+
+.toggle-password-btn:hover .input-icon {
+    -fx-fill: #3498db;
+}
+
+.toggle-password-btn:pressed {
+    -fx-background-color: rgba(0, 0, 0, 0.1);
+}
