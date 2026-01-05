@@ -304,41 +304,47 @@ public class PackageManagementController implements Initializable {
         }
 
         try {
-            // Get the source resources folder path
-            URL resourceUrl = getClass().getResource("/Images/");
-            if (resourceUrl == null) {
-                // Fallback: use src/main/resources/Images directly
-                String projectPath = System.getProperty("user.dir");
-                Path imagesDir = Path.of(projectPath, "src", "main", "resources", "Images", "packages");
-                Files.createDirectories(imagesDir);
-
-                // Generate unique filename
-                String extension = imageFile.getName().substring(imageFile.getName().lastIndexOf('.'));
-                String uniqueFileName = "pkg_" + UUID.randomUUID().toString().substring(0, 8) + extension;
-
-                Path targetPath = imagesDir.resolve(uniqueFileName);
-                Files.copy(imageFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-
-                return IMAGES_FOLDER + uniqueFileName;
-            }
-
-            // If we have the resource URL, copy there
-            Path imagesDir = Path.of(resourceUrl.toURI()).resolve("packages");
+            // Save to external data directory (works for both IDE and JAR)
+            Path dataDir = getAppDataDirectory();
+            Path imagesDir = dataDir.resolve("packages");
             Files.createDirectories(imagesDir);
 
+            // Generate unique filename
             String extension = imageFile.getName().substring(imageFile.getName().lastIndexOf('.'));
             String uniqueFileName = "pkg_" + UUID.randomUUID().toString().substring(0, 8) + extension;
 
             Path targetPath = imagesDir.resolve(uniqueFileName);
             Files.copy(imageFile.toPath(), targetPath, StandardCopyOption.REPLACE_EXISTING);
 
-            return IMAGES_FOLDER + uniqueFileName;
+            // Return the path relative to data directory
+            return "packages/" + uniqueFileName;
 
         } catch (Exception e) {
             e.printStackTrace();
             showAlert(Alert.AlertType.WARNING, "Warning", "Failed to save image: " + e.getMessage());
             return currentImagePath;
         }
+    }
+
+    /**
+     * Gets the application data directory for storing images. Creates a
+     * 'TravelManagement/images' folder in user's home directory.
+     */
+    private Path getAppDataDirectory() {
+        String userHome = System.getProperty("user.home");
+        return Path.of(userHome, "TravelManagement", "images");
+    }
+
+    /**
+     * Gets the full path to an image file. Used for loading images from the
+     * external data directory.
+     */
+    public static Path getImagePath(String relativePath) {
+        if (relativePath == null || relativePath.isEmpty()) {
+            return null;
+        }
+        String userHome = System.getProperty("user.home");
+        return Path.of(userHome, "TravelManagement", "images", relativePath);
     }
 
     private void setupEventHandlers() {
@@ -487,13 +493,19 @@ public class PackageManagementController implements Initializable {
         selectedImageFile = null;
         if (currentImagePath != null && !currentImagePath.isEmpty()) {
             try {
-                Image image = new Image(getClass().getResourceAsStream("/" + currentImagePath));
-                if (image != null && !image.isError()) {
-                    imagePreview.setImage(image);
-                    imagePreview.setVisible(true);
-                    dropPlaceholder.setVisible(false);
-                    removeImageBtn.setVisible(true);
-                    imageNameLabel.setText(currentImagePath.substring(currentImagePath.lastIndexOf('/') + 1));
+                // Load from external data directory
+                Path imagePath = getImagePath(currentImagePath);
+                if (imagePath != null && Files.exists(imagePath)) {
+                    Image image = new Image(imagePath.toUri().toString());
+                    if (image != null && !image.isError()) {
+                        imagePreview.setImage(image);
+                        imagePreview.setVisible(true);
+                        dropPlaceholder.setVisible(false);
+                        removeImageBtn.setVisible(true);
+                        imageNameLabel.setText(currentImagePath.substring(currentImagePath.lastIndexOf('/') + 1));
+                    } else {
+                        resetImagePreview();
+                    }
                 } else {
                     resetImagePreview();
                 }

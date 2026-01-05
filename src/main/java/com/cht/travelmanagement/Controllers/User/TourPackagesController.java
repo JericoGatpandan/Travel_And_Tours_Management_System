@@ -1,6 +1,8 @@
 package com.cht.travelmanagement.Controllers.User;
 
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ResourceBundle;
 
 import com.cht.travelmanagement.Models.Model;
@@ -74,19 +76,25 @@ public class TourPackagesController implements Initializable {
 
         if (pkg.getImagePath() != null && !pkg.getImagePath().isEmpty()) {
             try {
-                Image image = new Image(getClass().getResourceAsStream("/" + pkg.getImagePath()));
-                if (image != null && !image.isError()) {
-                    ImageView imageView = new ImageView(image);
-                    imageView.setFitWidth(320);
-                    imageView.setFitHeight(180);
-                    imageView.setPreserveRatio(false);
-                    imageView.setStyle("-fx-background-radius: 12 12 0 0;");
-                    // Clip to rounded corners
-                    javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(320, 180);
-                    clip.setArcWidth(24);
-                    clip.setArcHeight(24);
-                    imageView.setClip(clip);
-                    imageContainer.getChildren().add(imageView);
+                // Load from external data directory
+                Path imagePath = getImagePath(pkg.getImagePath());
+                if (imagePath != null && Files.exists(imagePath)) {
+                    Image image = new Image(imagePath.toUri().toString());
+                    if (image != null && !image.isError()) {
+                        ImageView imageView = new ImageView(image);
+                        imageView.setFitWidth(320);
+                        imageView.setFitHeight(180);
+                        imageView.setPreserveRatio(false);
+                        imageView.setStyle("-fx-background-radius: 12 12 0 0;");
+                        // Clip to rounded corners
+                        javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(320, 180);
+                        clip.setArcWidth(24);
+                        clip.setArcHeight(24);
+                        imageView.setClip(clip);
+                        imageContainer.getChildren().add(imageView);
+                    } else {
+                        imageContainer.getChildren().add(createPlaceholderImage(pkg.getDestination()));
+                    }
                 } else {
                     imageContainer.getChildren().add(createPlaceholderImage(pkg.getDestination()));
                 }
@@ -222,5 +230,16 @@ public class TourPackagesController implements Initializable {
     private void updatePackageCount() {
         int count = filteredPackages.size();
         packageCount_lbl.setText(count + (count == 1 ? " package" : " packages"));
+    }
+
+    /**
+     * Gets the full path to an image file from the external data directory.
+     */
+    private Path getImagePath(String relativePath) {
+        if (relativePath == null || relativePath.isEmpty()) {
+            return null;
+        }
+        String userHome = System.getProperty("user.home");
+        return Path.of(userHome, "TravelManagement", "images", relativePath);
     }
 }
