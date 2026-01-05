@@ -1,0 +1,178 @@
+/* ADMIN DASHBOARD STYLES */
+
+/* Main Container */
+.dashboard-container {
+    -fx-background-color: #f5f6fa;
+}
+
+/* Header */
+.dashboard-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.title-icon {
+    -fx-fill: #3498db;
+}
+
+.refresh-button {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-padding: 8 15;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+
+.refresh-button:hover {
+    -fx-background-color: #2980b9;
+}
+
+.refresh-button .glyph-icon {
+    -fx-fill: white;
+}
+
+/* Stats Cards Row */
+.stats-row {
+    -fx-padding: 0;
+}
+
+/* Individual Stat Cards */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 25 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 2);
+    -fx-min-width: 180;
+    -fx-min-height: 140;
+}
+
+.stat-card:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 15, 0, 0, 3);
+}
+
+/* Stat Card Colors */
+.sales-card .stat-icon {
+    -fx-fill: #27ae60;
+}
+.sales-card .stat-value {
+    -fx-text-fill: #27ae60;
+}
+
+.bookings-card .stat-icon {
+    -fx-fill: #3498db;
+}
+.bookings-card .stat-value {
+    -fx-text-fill: #3498db;
+}
+
+.packages-card .stat-icon {
+    -fx-fill: #9b59b6;
+}
+.packages-card .stat-value {
+    -fx-text-fill: #9b59b6;
+}
+
+.employees-card .stat-icon {
+    -fx-fill: #e67e22;
+}
+.employees-card .stat-value {
+    -fx-text-fill: #e67e22;
+}
+
+.stat-value {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.stat-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+
+/* Section Titles */
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.section-title .glyph-icon {
+    -fx-fill: #3498db;
+}
+
+/* Chart Containers */
+.chart-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 2);
+}
+
+/* Table Containers */
+.table-container {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 2);
+}
+
+/* Tables */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #ecf0f1;
+    -fx-border-radius: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: #f8f9fa;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10 5;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: white;
+    -fx-border-color: #ecf0f1;
+    -fx-border-width: 0 0 1 0;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #f5f6fa;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #ebf5fb;
+}
+
+/* Charts */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10 0 0 0;
+}
+
+.chart-pie {
+    -fx-border-color: white;
+    -fx-border-width: 2;
+}
+
+/* Pie Chart Colors */
+.default-color0.chart-pie { -fx-pie-color: #3498db; }
+.default-color1.chart-pie { -fx-pie-color: #2ecc71; }
+.default-color2.chart-pie { -fx-pie-color: #9b59b6; }
+.default-color3.chart-pie { -fx-pie-color: #e67e22; }
+.default-color4.chart-pie { -fx-pie-color: #e74c3c; }
+
+/* Bar Chart Colors */
+.default-color0.chart-bar { -fx-bar-fill: #3498db; }
+.default-color1.chart-bar { -fx-bar-fill: #2ecc71; }
+.default-color2.chart-bar { -fx-bar-fill: #9b59b6; }

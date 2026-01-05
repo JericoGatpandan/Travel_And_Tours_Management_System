@@ -1,14 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.cht.travelmanagement.Controllers.Admin.Controller.AdminMenuController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="700.0" prefWidth="250.0" styleClass="sidebar-container" stylesheets="@../../Styles/Admin/AdminMenu.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.Admin.AdminMenuController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="120.0" prefWidth="250.0" styleClass="logo-container" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ImageView fitHeight="80.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/cht-logo.jpg" />
+               </image>
+            </ImageView>
+            <Label styleClass="admin-title" text="Admin Panel" />
+         </children>
+      </VBox>
+      <VBox layoutY="130.0" prefWidth="250.0" spacing="5.0" styleClass="menu-container" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="130.0">
+         <children>
+            <Button fx:id="dashboard_btn" mnemonicParsing="false" styleClass="menu-button" text="Dashboard" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <FontAwesomeIconView glyphName="DASHBOARD" size="20" />
+               </graphic>
+            </Button>
+            <Button fx:id="package_management_btn" mnemonicParsing="false" styleClass="menu-button" text="Tour Packages" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <FontAwesomeIconView glyphName="SUITCASE" size="20" />
+               </graphic>
+            </Button>
+            <Button fx:id="employee_management_btn" mnemonicParsing="false" styleClass="menu-button" text="Employees" VBox.vgrow="ALWAYS">
+               <graphic>
+                  <FontAwesomeIconView glyphName="USERS" size="20" />
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <Button fx:id="logout_btn" layoutY="650.0" mnemonicParsing="false" text="Logout" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0">
+         <graphic>
+            <FontAwesomeIconView glyphName="SIGN_OUT" size="18" />
+         </graphic>
+         <styleClass>
+            <String fx:value="menu-button" />
+            <String fx:value="logout-button" />
+         </styleClass>
+      </Button>
+   </children>
 </AnchorPane>

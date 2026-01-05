@@ -15,8 +15,11 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class TourPackagesController implements Initializable {
@@ -58,9 +61,45 @@ public class TourPackagesController implements Initializable {
         card.setPrefWidth(320);
         card.setMinWidth(280);
         card.setMaxWidth(350);
-        card.setPadding(new Insets(20));
+        card.setPadding(new Insets(0));
         card.setStyle("-fx-background-color: white; -fx-background-radius: 12; "
                 + "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 10, 0, 0, 0);");
+
+        // Package Image
+        StackPane imageContainer = new StackPane();
+        imageContainer.setPrefHeight(180);
+        imageContainer.setMinHeight(180);
+        imageContainer.setMaxHeight(180);
+        imageContainer.setStyle("-fx-background-color: #f0f0f0; -fx-background-radius: 12 12 0 0;");
+
+        if (pkg.getImagePath() != null && !pkg.getImagePath().isEmpty()) {
+            try {
+                Image image = new Image(getClass().getResourceAsStream("/" + pkg.getImagePath()));
+                if (image != null && !image.isError()) {
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitWidth(320);
+                    imageView.setFitHeight(180);
+                    imageView.setPreserveRatio(false);
+                    imageView.setStyle("-fx-background-radius: 12 12 0 0;");
+                    // Clip to rounded corners
+                    javafx.scene.shape.Rectangle clip = new javafx.scene.shape.Rectangle(320, 180);
+                    clip.setArcWidth(24);
+                    clip.setArcHeight(24);
+                    imageView.setClip(clip);
+                    imageContainer.getChildren().add(imageView);
+                } else {
+                    imageContainer.getChildren().add(createPlaceholderImage(pkg.getDestination()));
+                }
+            } catch (Exception e) {
+                imageContainer.getChildren().add(createPlaceholderImage(pkg.getDestination()));
+            }
+        } else {
+            imageContainer.getChildren().add(createPlaceholderImage(pkg.getDestination()));
+        }
+
+        // Content container
+        VBox content = new VBox(10);
+        content.setPadding(new Insets(15, 20, 20, 20));
 
         // Destination badge
         Label destBadge = new Label(pkg.getDestination());
@@ -113,7 +152,8 @@ public class TourPackagesController implements Initializable {
                 : "-fx-background-color: #f8d7da; -fx-text-fill: #721c24; -fx-padding: 4 10; -fx-background-radius: 10; -fx-font-size: 10;");
         statusRow.getChildren().add(statusBadge);
 
-        card.getChildren().addAll(destBadge, nameLabel, descLabel, infoRow, inclusionsLabel, priceRow, statusRow);
+        content.getChildren().addAll(destBadge, nameLabel, descLabel, infoRow, inclusionsLabel, priceRow, statusRow);
+        card.getChildren().addAll(imageContainer, content);
 
         // Hover effect
         card.setOnMouseEntered(e -> card.setStyle(
@@ -126,6 +166,25 @@ public class TourPackagesController implements Initializable {
         ));
 
         return card;
+    }
+
+    private VBox createPlaceholderImage(String destination) {
+        VBox placeholder = new VBox(8);
+        placeholder.setAlignment(Pos.CENTER);
+        placeholder.setPrefWidth(320);
+        placeholder.setPrefHeight(180);
+        placeholder.setStyle("-fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2); -fx-background-radius: 12 12 0 0;");
+
+        FontAwesomeIconView icon = new FontAwesomeIconView();
+        icon.setGlyphName("PLANE");
+        icon.setSize("48");
+        icon.setStyle("-fx-fill: rgba(255,255,255,0.8);");
+
+        Label destLabel = new Label(destination);
+        destLabel.setStyle("-fx-text-fill: white; -fx-font-size: 14; -fx-font-weight: bold;");
+
+        placeholder.getChildren().addAll(icon, destLabel);
+        return placeholder;
     }
 
     private HBox createInfoItem(String iconName, String text) {

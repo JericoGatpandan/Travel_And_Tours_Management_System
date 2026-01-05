@@ -22,4 +22,13 @@ public interface BookingRepository {
     boolean createBooking(BookingData bookingData, int employeeId);
 
     boolean cancelBooking(int bookingId);
+
+    // Admin Dashboard Methods
+    double getTotalSales();
+
+    int getTotalBookingsCount();
+
+    ObservableList<Object[]> getPopularPackages();
+
+    ObservableList<Booking> getRecentBookingsWithDetails(int limit);
 }

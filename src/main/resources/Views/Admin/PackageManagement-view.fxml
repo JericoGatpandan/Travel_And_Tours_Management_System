@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="950.0" styleClass="content-container" stylesheets="@../../Styles/Admin/PackageManagement.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.Admin.PackageManagementController">
+    <children>
+        <VBox spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <children>
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT" spacing="20.0">
+                    <children>
+                        <Label styleClass="page-title" text="Tour Package Management">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="SUITCASE" size="24" />
+                            </graphic>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="addNewBtn" mnemonicParsing="false" styleClass="primary-button" text="Add New Package">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="PLUS" size="14" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <!-- Search Bar -->
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchField" promptText="Search packages..." prefWidth="300.0" styleClass="search-field" />
+                        <Button fx:id="searchBtn" mnemonicParsing="false" styleClass="secondary-button" text="Search">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="SEARCH" size="14" />
+                            </graphic>
+                        </Button>
+                        <Button fx:id="refreshBtn" mnemonicParsing="false" styleClass="secondary-button" text="Refresh">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="REFRESH" size="14" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <!-- Table View -->
+                <TableView fx:id="packagesTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idColumn" prefWidth="60" text="ID" />
+                        <TableColumn fx:id="nameColumn" prefWidth="150" text="Name" />
+                        <TableColumn fx:id="destinationColumn" prefWidth="120" text="Destination" />
+                        <TableColumn fx:id="durationColumn" prefWidth="80" text="Duration" />
+                        <TableColumn fx:id="maxPaxColumn" prefWidth="80" text="Max Pax" />
+                        <TableColumn fx:id="priceColumn" prefWidth="100" text="Price" />
+                        <TableColumn fx:id="statusColumn" prefWidth="80" text="Status" />
+                        <TableColumn fx:id="actionsColumn" prefWidth="150" text="Actions" />
+                    </columns>
+                    <placeholder>
+                        <Label text="No tour packages found" />
+                    </placeholder>
+                </TableView>
+
+                <!-- Form Panel (Hidden by default, shown when adding/editing) -->
+                <TitledPane fx:id="formPane" animated="true" collapsible="true" expanded="false" styleClass="form-pane" text="Package Details">
+                    <content>
+                        <HBox spacing="20.0">
+                            <padding>
+                                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                            </padding>
+                            <children>
+                                <!-- Image Upload Section -->
+                                <VBox alignment="CENTER" spacing="10.0" styleClass="image-upload-section">
+                                    <children>
+                                        <Label text="Package Image" styleClass="section-label" />
+                                        <StackPane fx:id="imageDropZone" styleClass="image-drop-zone" prefWidth="200.0" prefHeight="200.0">
+                                            <children>
+                                                <VBox fx:id="dropPlaceholder" alignment="CENTER" spacing="8.0">
+                                                    <children>
+                                                        <FontAwesomeIconView glyphName="CLOUD_UPLOAD" size="40" styleClass="upload-icon" />
+                                                        <Label text="Drag &amp; Drop" styleClass="drop-label" />
+                                                        <Label text="or click to browse" styleClass="drop-sublabel" />
+                                                    </children>
+                                                </VBox>
+                                                <ImageView fx:id="imagePreview" fitWidth="200.0" fitHeight="200.0" preserveRatio="true" pickOnBounds="true" visible="false" />
+                                            </children>
+                                        </StackPane>
+                                        <HBox alignment="CENTER" spacing="8.0">
+                                            <children>
+                                                <Button fx:id="browseImageBtn" mnemonicParsing="false" styleClass="secondary-button" text="Browse">
+                                                    <graphic>
+                                                        <FontAwesomeIconView glyphName="FOLDER_OPEN" size="12" />
+                                                    </graphic>
+                                                </Button>
+                                                <Button fx:id="removeImageBtn" mnemonicParsing="false" styleClass="danger-button" text="Remove" visible="false">
+                                                    <graphic>
+                                                        <FontAwesomeIconView glyphName="TRASH" size="12" />
+                                                    </graphic>
+                                                </Button>
+                                            </children>
+                                        </HBox>
+                                        <Label fx:id="imageNameLabel" styleClass="image-name-label" text="" />
+                                    </children>
+                                </VBox>
+                                
+                                <!-- Form Fields Section -->
+                                <GridPane hgap="15.0" vgap="10.0" HBox.hgrow="ALWAYS">
+                            <columnConstraints>
+                                <ColumnConstraints halignment="RIGHT" minWidth="120.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+                                <ColumnConstraints halignment="RIGHT" minWidth="120.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="200.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="35.0" />
+                                <RowConstraints minHeight="35.0" />
+                                <RowConstraints minHeight="35.0" />
+                                <RowConstraints minHeight="80.0" />
+                                <RowConstraints minHeight="80.0" />
+                                <RowConstraints minHeight="40.0" />
+                            </rowConstraints>
+                            <children>
+                                <!-- Row 0 -->
+                                <Label text="Package Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <TextField fx:id="nameField" promptText="Enter package name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Destination:" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                                <TextField fx:id="destinationField" promptText="Enter destination" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+
+                                <!-- Row 1 -->
+                                <Label text="Duration (Days):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <Spinner fx:id="durationSpinner" editable="true" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Max Participants:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <Spinner fx:id="maxPaxSpinner" editable="true" prefWidth="100.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                                <!-- Row 2 -->
+                                <Label text="Price (₱):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="priceField" promptText="Enter price" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Label text="Status:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <CheckBox fx:id="isActiveCheckbox" selected="true" text="Active" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                                <!-- Row 3 -->
+                                <Label text="Description:" GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.valignment="TOP" />
+                                <TextArea fx:id="descriptionArea" prefRowCount="3" promptText="Enter description" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+
+                                <!-- Row 4 -->
+                                <Label text="Inclusions:" GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.valignment="TOP" />
+                                <TextArea fx:id="inclusionsArea" prefRowCount="3" promptText="e.g., flights, hotel, tours, meals" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+
+                                <!-- Row 5: Buttons -->
+                                <HBox alignment="CENTER_RIGHT" spacing="10.0" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="5">
+                                    <children>
+                                        <Label fx:id="formMessageLabel" styleClass="form-message" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Button fx:id="cancelBtn" mnemonicParsing="false" styleClass="secondary-button" text="Cancel" />
+                                        <Button fx:id="saveBtn" mnemonicParsing="false" styleClass="primary-button" text="Save Package" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </GridPane>
+                            </children>
+                        </HBox>
+                    </content>
+                </TitledPane>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

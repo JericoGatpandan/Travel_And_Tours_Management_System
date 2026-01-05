@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane fitToWidth="true" stylesheets="@../../Styles/Admin/AdminDashboard.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.Admin.AdminDashboardController">
+    <content>
+        <VBox spacing="25.0" styleClass="dashboard-container">
+            <padding>
+                <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+            </padding>
+            <children>
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <Label styleClass="dashboard-title" text="Admin Dashboard">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="DASHBOARD" size="28" styleClass="title-icon" />
+                            </graphic>
+                        </Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="refreshBtn" mnemonicParsing="false" styleClass="refresh-button" text="Refresh Data">
+                            <graphic>
+                                <FontAwesomeIconView glyphName="REFRESH" size="14" />
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <!-- Stats Cards Row -->
+                <HBox alignment="CENTER" spacing="20.0" styleClass="stats-row">
+                    <children>
+                        <!-- Total Sales Card -->
+                        <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,sales-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <FontAwesomeIconView glyphName="MONEY" size="36" styleClass="stat-icon" />
+                                <Label styleClass="stat-value" fx:id="totalSalesLabel" text="₱0.00" />
+                                <Label styleClass="stat-label" text="Total Sales" />
+                            </children>
+                        </VBox>
+
+                        <!-- Total Bookings Card -->
+                        <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,bookings-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <FontAwesomeIconView glyphName="CALENDAR_CHECK_ALT" size="36" styleClass="stat-icon" />
+                                <Label styleClass="stat-value" fx:id="totalBookingsLabel" text="0" />
+                                <Label styleClass="stat-label" text="Total Bookings" />
+                            </children>
+                        </VBox>
+
+                        <!-- Active Packages Card -->
+                        <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,packages-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <FontAwesomeIconView glyphName="SUITCASE" size="36" styleClass="stat-icon" />
+                                <Label styleClass="stat-value" fx:id="activePackagesLabel" text="0" />
+                                <Label styleClass="stat-label" text="Active Packages" />
+                            </children>
+                        </VBox>
+
+                        <!-- Total Employees Card -->
+                        <VBox alignment="CENTER" spacing="10.0" styleClass="stat-card,employees-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <FontAwesomeIconView glyphName="USERS" size="36" styleClass="stat-icon" />
+                                <Label styleClass="stat-value" fx:id="totalEmployeesLabel" text="0" />
+                                <Label styleClass="stat-label" text="Active Employees" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Charts Row -->
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <!-- Popular Packages Chart -->
+                        <VBox spacing="15.0" styleClass="chart-container" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="section-title" text="Popular Tour Packages">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="PIE_CHART" size="18" />
+                                    </graphic>
+                                </Label>
+                                <PieChart fx:id="popularPackagesChart" legendSide="BOTTOM" prefHeight="300.0" />
+                            </children>
+                        </VBox>
+
+                        <!-- Employee Performance Chart -->
+                        <VBox spacing="15.0" styleClass="chart-container" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="section-title" text="Employee Performance">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="BAR_CHART" size="18" />
+                                    </graphic>
+                                </Label>
+                                <BarChart fx:id="employeePerformanceChart" prefHeight="300.0">
+                                    <xAxis>
+                                        <CategoryAxis label="Employee" fx:id="employeeAxis" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Bookings" fx:id="bookingsAxis" />
+                                    </yAxis>
+                                </BarChart>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Tables Row -->
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <!-- Recent Bookings Table -->
+                        <VBox spacing="15.0" styleClass="table-container" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="section-title" text="Recent Bookings">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="LIST" size="18" />
+                                    </graphic>
+                                </Label>
+                                <TableView fx:id="recentBookingsTable" prefHeight="200.0">
+                                    <columns>
+                                        <TableColumn fx:id="bookingIdColumn" prefWidth="60" text="ID" />
+                                        <TableColumn fx:id="clientNameColumn" prefWidth="120" text="Client" />
+                                        <TableColumn fx:id="packageNameColumn" prefWidth="150" text="Package" />
+                                        <TableColumn fx:id="bookingDateColumn" prefWidth="100" text="Date" />
+                                        <TableColumn fx:id="bookingStatusColumn" prefWidth="80" text="Status" />
+                                    </columns>
+                                    <placeholder>
+                                        <Label text="No recent bookings" />
+                                    </placeholder>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <!-- Top Performers Table -->
+                        <VBox spacing="15.0" styleClass="table-container" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="section-title" text="Top Performers">
+                                    <graphic>
+                                        <FontAwesomeIconView glyphName="TROPHY" size="18" />
+                                    </graphic>
+                                </Label>
+                                <TableView fx:id="topPerformersTable" prefHeight="200.0">
+                                    <columns>
+                                        <TableColumn fx:id="rankColumn" prefWidth="50" text="#" />
+                                        <TableColumn fx:id="employeeNameColumn" prefWidth="150" text="Employee" />
+                                        <TableColumn fx:id="bookingsCountColumn" prefWidth="100" text="Bookings" />
+                                        <TableColumn fx:id="totalSalesColumn" prefWidth="120" text="Total Sales" />
+                                    </columns>
+                                    <placeholder>
+                                        <Label text="No data available" />
+                                    </placeholder>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

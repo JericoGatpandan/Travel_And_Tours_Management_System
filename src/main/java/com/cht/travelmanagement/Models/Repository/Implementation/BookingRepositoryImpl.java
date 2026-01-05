@@ -298,4 +298,94 @@ public class BookingRepositoryImpl implements BookingRepository {
         return dashboardData;
     }
 
+    @Override
+    public double getTotalSales() {
+        String query = "SELECT COALESCE(SUM(amount), 0) as totalSales FROM payment WHERE status = 'PAID'";
+
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                return resultSet.getDouble("totalSales");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public int getTotalBookingsCount() {
+        String query = "SELECT COUNT(*) as total FROM booking";
+
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                return resultSet.getInt("total");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public ObservableList<Object[]> getPopularPackages() {
+        ObservableList<Object[]> popularPackages = FXCollections.observableArrayList();
+        String query = "SELECT p.Name, COUNT(b.BookingID) as bookingCount "
+                + "FROM package p "
+                + "LEFT JOIN booking b ON p.PackageID = b.PackageID "
+                + "WHERE p.IsActive = 1 "
+                + "GROUP BY p.PackageID, p.Name "
+                + "ORDER BY bookingCount DESC "
+                + "LIMIT 5";
+
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String packageName = resultSet.getString("Name");
+                int bookingCount = resultSet.getInt("bookingCount");
+                popularPackages.add(new Object[]{packageName, bookingCount});
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return popularPackages;
+    }
+
+    @Override
+    public ObservableList<Booking> getRecentBookingsWithDetails(int limit) {
+        ObservableList<Booking> recentBookings = FXCollections.observableArrayList();
+        String query = "SELECT b.BookingID, c.name AS CustomerName, p.Name AS PackageName, "
+                + "p.Destination, b.BookingDate, b.Status "
+                + "FROM booking b "
+                + "JOIN client c ON b.ClientID = c.clientId "
+                + "JOIN package p ON b.PackageID = p.PackageID "
+                + "ORDER BY b.BookingDate DESC "
+                + "LIMIT ?";
+
+        try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, limit);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int bookingId = resultSet.getInt("BookingID");
+                    String clientName = resultSet.getString("CustomerName");
+                    String packageName = resultSet.getString("PackageName");
+                    String destination = resultSet.getString("Destination");
+                    LocalDate bookingDate = resultSet.getDate("BookingDate").toLocalDate();
+                    String status = resultSet.getString("Status");
+
+                    Booking booking = new Booking(bookingId, clientName, destination, packageName, bookingDate, status);
+                    recentBookings.add(booking);
+                }
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return recentBookings;
+    }
 }
