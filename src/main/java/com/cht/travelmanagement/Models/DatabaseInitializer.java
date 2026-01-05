@@ -27,16 +27,13 @@ public class DatabaseInitializer {
             return;
         }
 
-        String dbUrl = props.getProperty("db.url"); 
+        String dbUrl = props.getProperty("db.url");
         String user = props.getProperty("db.user");
         String pass = props.getProperty("db.password");
 
-       
-        String serverUrl = dbUrl.substring(0, dbUrl.lastIndexOf("/")); 
+        String serverUrl = dbUrl.substring(0, dbUrl.lastIndexOf("/"));
 
-        try (Connection conn = DriverManager.getConnection(serverUrl, user, pass);
-             Statement stmt = conn.createStatement()) {
-
+        try (Connection conn = DriverManager.getConnection(serverUrl, user, pass); Statement stmt = conn.createStatement()) {
 
             try (Scanner scanner = new Scanner(scriptFile)) {
 
@@ -45,17 +42,28 @@ public class DatabaseInitializer {
                 while (scanner.hasNext()) {
                     String rawCommand = scanner.next().trim();
 
-                    
-                    if (rawCommand.isEmpty() || rawCommand.startsWith("--")) {
+                    // Strip leading comment lines (lines starting with --)
+                    while (rawCommand.startsWith("--")) {
+                        int newlineIndex = rawCommand.indexOf('\n');
+                        if (newlineIndex == -1) {
+                            rawCommand = "";
+                            break;
+                        }
+                        rawCommand = rawCommand.substring(newlineIndex + 1).trim();
+                    }
+
+                    if (rawCommand.isEmpty()) {
                         continue;
                     }
-                    
-                    if (rawCommand.contains("Dump completed")) break;
+
+                    if (rawCommand.contains("Dump completed")) {
+                        break;
+                    }
 
                     try {
-                        
+
                         stmt.execute(rawCommand);
-                        
+
                         if (rawCommand.toUpperCase().startsWith("CREATE")) {
                             System.out.println("Executed: " + rawCommand.split("\n")[0]);
                         }
