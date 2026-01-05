@@ -1,7 +1,5 @@
 package com.cht.travelmanagement.Models.Repository.Implementation;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -226,7 +224,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
             preparedStatement.setString(2, employee.getEmail());
 
             if (updatePassword) {
-                preparedStatement.setString(3, hashPassword(employee.getPassword()));
+                preparedStatement.setString(3, PasswordUtils.hashPassword(employee.getPassword()));
                 preparedStatement.setString(4, employee.getContactNumber());
                 preparedStatement.setBoolean(5, employee.isManager());
                 preparedStatement.setBoolean(6, employee.isActive());
@@ -398,24 +396,4 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return new Employee(employeeId, name, email, password, contactNumber, isManager, isActive);
     }
 
-    /**
-     * Hash password using SHA-1 (same as existing passwords in DB)
-     */
-    private String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] hash = md.digest(password.getBytes());
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : hash) {
-                String hex = Integer.toHexString(0xff & b);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("SHA-1 algorithm not found", e);
-        }
-    }
 }

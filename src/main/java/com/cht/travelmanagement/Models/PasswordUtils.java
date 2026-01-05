@@ -10,7 +10,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  *
- * @author jeric
+ * @author jerico
  */
 public class PasswordUtils {
     public static String hashPassword(String password) {
