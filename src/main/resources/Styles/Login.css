@@ -18,14 +18,17 @@
 
 /* Background container */
 .login-background {
-    -fx-background-color: linear-gradient(to bottom right, #3498db, #2C3E50);
+    -fx-background-image: url("../Images/login-background.jpg");
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-background-repeat: no-repeat;
 }
 
 /* Main login card */
 .login-container {
-    -fx-background-color: white;
+    -fx-background-color: rgba(255, 255, 255, 0.15);
     -fx-background-radius: 16;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 30, 0, 0, 10);
+    -fx-effect: dropshadow(gaussian, rgba(207, 207, 207, 0.25), 30, 0, 0, 10);
 }
 
 /* Logo section */
