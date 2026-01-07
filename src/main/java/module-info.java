@@ -8,6 +8,7 @@ module com.cht.travelmanagement {
     requires java.desktop;
 
     opens com.cht.travelmanagement to javafx.fxml;
+    opens com.cht.travelmanagement.Controllers to javafx.fxml;
     opens com.cht.travelmanagement.Controllers.User to javafx.fxml;
     opens com.cht.travelmanagement.Controllers.Admin to javafx.fxml;
     opens com.cht.travelmanagement.Controllers.User.BookingWizard to javafx.fxml;
