@@ -9,13 +9,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Client {
+public class Client extends Person {
 
     private final IntegerProperty clientId;
-    private final StringProperty name;
-    private final StringProperty email;
     private final StringProperty address;
-    private final StringProperty contactNumber;
     private final StringProperty customerType;
     private final ObjectProperty<LocalDate> dateRegistered;
     private final StringProperty destination;
@@ -23,11 +20,9 @@ public class Client {
     private final StringProperty tripDates;
 
     public Client(int clientId, String name, String email, String address, String contactNumber, String customerType, LocalDate dateRegistered) {
+        super(name, email, contactNumber);
         this.clientId = new SimpleIntegerProperty(this, "clientId", clientId);
-        this.name = new SimpleStringProperty(this, "name", name);
-        this.email = new SimpleStringProperty(this, "email", email);
         this.address = new SimpleStringProperty(this, "address", address);
-        this.contactNumber = new SimpleStringProperty(this, "contactNumber", contactNumber);
         this.customerType = new SimpleStringProperty(this, "customerType", customerType);
         this.dateRegistered = new SimpleObjectProperty<>(this, "dateRegistered", dateRegistered);
         this.destination = new SimpleStringProperty(this, "destination", "");
@@ -36,11 +31,9 @@ public class Client {
     }
 
     public Client(int clientId, String name, String email, String contactNumber, int assignedEmployeeId) {
+        super(name, email, contactNumber);
         this.clientId = new SimpleIntegerProperty(this, "clientId", clientId);
-        this.name = new SimpleStringProperty(this, "name", name);
-        this.email = new SimpleStringProperty(this, "email", email);
         this.address = new SimpleStringProperty(this, "address", "");
-        this.contactNumber = new SimpleStringProperty(this, "contactNumber", contactNumber);
         this.customerType = new SimpleStringProperty(this, "customerType", "");
         this.dateRegistered = new SimpleObjectProperty<>(this, "dateRegistered", LocalDate.now());
         this.destination = new SimpleStringProperty(this, "destination", "");
@@ -49,11 +42,9 @@ public class Client {
     }
 
     public Client(int clientId, String name, String email, String contactNumber, String destination, String tripStatus, String tripDates) {
+        super(name, email, contactNumber);
         this.clientId = new SimpleIntegerProperty(this, "clientId", clientId);
-        this.name = new SimpleStringProperty(this, "name", name);
-        this.email = new SimpleStringProperty(this, "email", email);
         this.address = new SimpleStringProperty(this, "address", "");
-        this.contactNumber = new SimpleStringProperty(this, "contactNumber", contactNumber);
         this.customerType = new SimpleStringProperty(this, "customerType", "");
         this.dateRegistered = new SimpleObjectProperty<>(this, "dateRegistered", LocalDate.now());
         this.destination = new SimpleStringProperty(this, "destination", destination);
@@ -69,36 +60,12 @@ public class Client {
         return clientId;
     }
 
-    public String getName() {
-        return name.get();
-    }
-
-    public StringProperty nameProperty() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email.get();
-    }
-
-    public StringProperty emailProperty() {
-        return email;
-    }
-
     public String getAddress() {
         return address.get();
     }
 
     public StringProperty addressProperty() {
         return address;
-    }
-
-    public String getContactNumber() {
-        return contactNumber.get();
-    }
-
-    public StringProperty contactNumberProperty() {
-        return contactNumber;
     }
 
     public String getCustomerType() {
@@ -139,10 +106,5 @@ public class Client {
 
     public StringProperty tripDatesProperty() {
         return tripDates;
-    }
-
-    @Override
-    public String toString() {
-        return name.get();
     }
 }
