@@ -13,15 +13,14 @@ import com.cht.travelmanagement.Models.Model;
 import com.cht.travelmanagement.Models.Repository.Implementation.TourPackageRepositoryImpl;
 import com.cht.travelmanagement.Models.Repository.TourPackageRepository;
 import com.cht.travelmanagement.Models.TourPackage;
+import com.cht.travelmanagement.View.AlertUtility;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -278,7 +277,7 @@ public class PackageManagementController implements Initializable {
             removeImageBtn.setVisible(true);
             imageNameLabel.setText(file.getName());
         } catch (Exception e) {
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to load image: " + e.getMessage());
+            AlertUtility.showError("Error", "Image Load Failed", "Failed to load image: " + e.getMessage());
         }
     }
 
@@ -321,7 +320,7 @@ public class PackageManagementController implements Initializable {
 
         } catch (Exception e) {
             e.printStackTrace();
-            showAlert(Alert.AlertType.WARNING, "Warning", "Failed to save image: " + e.getMessage());
+            AlertUtility.showWarning("Warning", "Image Save Failed", "Failed to save image: " + e.getMessage());
             return currentImagePath;
         }
     }
@@ -393,22 +392,15 @@ public class PackageManagementController implements Initializable {
     }
 
     private void deletePackage(TourPackage pkg) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete Package");
-        alert.setHeaderText("Delete " + pkg.getPackageName() + "?");
-        alert.setContentText("This action cannot be undone. If the package has bookings, it will be deactivated instead.");
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                boolean success = tourPackageRepository.deleteTourPackage(pkg.getPackageId());
-                if (success) {
-                    showAlert(Alert.AlertType.INFORMATION, "Success", "Package deleted/deactivated successfully!");
-                    loadPackages();
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "Error", "Failed to delete package.");
-                }
+        if (AlertUtility.showConfirmation("Delete Package", "Delete " + pkg.getPackageName() + "?", "This action cannot be undone. If the package has bookings, it will be deactivated instead.")) {
+            boolean success = tourPackageRepository.deleteTourPackage(pkg.getPackageId());
+            if (success) {
+                AlertUtility.showSuccess("Success", "Package Deleted", "Package deleted/deactivated successfully!");
+                loadPackages();
+            } else {
+                AlertUtility.showError("Error", "Delete Failed", "Failed to delete package.");
             }
-        });
+        }
     }
 
     private void savePackage() {
@@ -446,7 +438,7 @@ public class PackageManagementController implements Initializable {
         }
 
         if (success) {
-            showAlert(Alert.AlertType.INFORMATION, "Success",
+            AlertUtility.showSuccess("Success", "Package Saved",
                     isEditMode ? "Package updated successfully!" : "Package created successfully!");
             hideForm();
             loadPackages();
@@ -542,13 +534,5 @@ public class PackageManagementController implements Initializable {
         clearForm();
         isEditMode = false;
         selectedPackage = null;
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

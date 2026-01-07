@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -12,8 +13,11 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane stylesheets="@../../Styles/Common.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.TourPackagesController">
+   <stylesheets>
+      <URL value="@../../Styles/User/TourPackages.css" />
+   </stylesheets>
    <children>
-      <VBox spacing="15" styleClass="page-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox spacing="20" styleClass="page-container" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <!-- Header Section -->
             <VBox spacing="5">
@@ -29,7 +33,7 @@
                   <HBox alignment="CENTER_LEFT" spacing="10" styleClass="search-container" HBox.hgrow="SOMETIMES">
                      <children>
                         <FontAwesomeIconView glyphName="SEARCH" size="16" styleClass="search-icon" />
-                        <TextField fx:id="search_fld" prefWidth="300" promptText="Search packages by name or destination..." styleClass="search-field" />
+                        <TextField fx:id="search_fld" prefWidth="350.0" promptText="Search packages by name or destination..." styleClass="search-field" />
                      </children>
                   </HBox>
                   <Pane HBox.hgrow="ALWAYS" />
@@ -40,9 +44,9 @@
             <!-- Packages Grid -->
             <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
                <content>
-                  <FlowPane fx:id="packages_grid" hgap="20" vgap="20">
+                  <FlowPane fx:id="packages_grid" hgap="25" vgap="25">
                      <padding>
-                        <Insets bottom="10" right="10" top="10" />
+                        <Insets bottom="30" left="5" right="20" top="10" />
                      </padding>
                   </FlowPane>
                </content>

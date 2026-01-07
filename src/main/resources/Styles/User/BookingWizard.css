@@ -3,27 +3,27 @@
    A cohesive design system for the travel booking wizard
    ===================================================== */
 
-/* === COLOR VARIABLES (Referenced in comments) ===
-   Primary: #4318FF (Vibrant Purple)
-   Primary Dark: #3311CC
-   Success: #05CD99 (Teal Green)
-   Warning: #FFB547 (Warm Orange)
-   Error: #EE5D50 (Coral Red)
-   Dark Text: #2B3674 (Navy)
-   Light Text: #A3AED0 (Muted Gray)
-   Background: #F4F7FE (Soft Gray)
+/* === COLOR VARIABLES (Aligned with App Theme) ===
+   Primary: #3498db (Blue)
+   Primary Gradient: #3498db to #6dd5fa
+   Success: #27ae60 (Green)
+   Warning: #f39c12 (Orange)
+   Error: #e74c3c (Red)
+   Dark Text: #2C3E50 (Dark Blue/Grey)
+   Light Text: #7F8C8D (Muted Gray)
+   Background: #F8F9FB (Soft Gray)
    Card BG: #FFFFFF
    Border: #E0E5F2
    ================================================ */
 
 /* === MAIN WIZARD CONTAINER === */
 #newBooking_parent {
-    -fx-background-color: #F4F7FE;
+    -fx-background-color: #F8F9FB;
 }
 
 /* === PROGRESS HEADER === */
 .progress-header {
-    -fx-background-color: linear-gradient(to right, #F8FAFF, #FFFFFF);
+    -fx-background-color: linear-gradient(to right, #FFFFFF, #F8F9FB);
     -fx-border-color: #E0E5F2;
     -fx-border-width: 0 0 1 0;
 }
@@ -40,9 +40,9 @@
 }
 
 .step-circle-active {
-    -fx-fill: #4318FF;
+    -fx-fill: #3498db;
     -fx-stroke: transparent;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.4), 12, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 12, 0, 0, 4);
 }
 
 .step-circle-inactive {
@@ -51,13 +51,13 @@
 }
 
 .step-circle-completed {
-    -fx-fill: #05CD99;
+    -fx-fill: #27ae60;
     -fx-stroke: transparent;
-    -fx-effect: dropshadow(gaussian, rgba(5, 205, 153, 0.3), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.3), 8, 0, 0, 2);
 }
 
 .step-circle-inner {
-    -fx-fill: #4318FF;
+    -fx-fill: #3498db;
 }
 
 .step-circle-inner-inactive {
@@ -65,7 +65,7 @@
 }
 
 .step-circle-inner-completed {
-    -fx-fill: #05CD99;
+    -fx-fill: #27ae60;
 }
 
 .step-number {
@@ -79,27 +79,27 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 .step-label-active {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .step-label-inactive {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 .step-label-completed {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-text-fill: #05CD99;
+    -fx-text-fill: #27ae60;
 }
 
 /* Progress Lines */
@@ -117,7 +117,7 @@
     -fx-min-height: 4;
     -fx-max-height: 4;
     -fx-pref-height: 4;
-    -fx-background-color: linear-gradient(to right, #4318FF, #05CD99);
+    -fx-background-color: linear-gradient(to right, #3498db, #27ae60);
     -fx-background-radius: 2;
     -fx-min-width: 40;
     -fx-max-width: 100;
@@ -141,8 +141,8 @@
 }
 
 .nav-btn-back:hover {
-    -fx-background-color: #F4F7FE;
-    -fx-border-color: #A3AED0;
+    -fx-background-color: #F8F9FB;
+    -fx-border-color: #7F8C8D;
 }
 
 .nav-btn-back:pressed {
@@ -153,48 +153,48 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .nav-icon-back {
-    -fx-fill: #2B3674;
+    -fx-fill: #2C3E50;
 }
 
 .nav-btn-next {
-    -fx-background-color: linear-gradient(to right, #4318FF, #6B4EFF);
+    -fx-background-color: linear-gradient(to right, #3498db, #6dd5fa);
     -fx-background-radius: 12;
     -fx-padding: 12 32;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.35), 12, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.35), 12, 0, 0, 4);
 }
 
 .nav-btn-next:hover {
-    -fx-background-color: linear-gradient(to right, #3311CC, #5840E0);
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.5), 16, 0, 0, 6);
+    -fx-background-color: linear-gradient(to right, #2980b9, #5dade2);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.5), 16, 0, 0, 6);
 }
 
 .nav-btn-next:pressed {
-    -fx-background-color: #3311CC;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.2), 8, 0, 0, 2);
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.2), 8, 0, 0, 2);
 }
 
 /* Submit button style (for final step) */
 .nav-btn-submit {
-    -fx-background-color: linear-gradient(to right, #05CD99, #00E6AC);
+    -fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);
     -fx-background-radius: 12;
     -fx-padding: 12 32;
     -fx-cursor: hand;
-    -fx-effect: dropshadow(gaussian, rgba(5, 205, 153, 0.35), 12, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.35), 12, 0, 0, 4);
 }
 
 .nav-btn-submit:hover {
-    -fx-background-color: linear-gradient(to right, #04B888, #00D49E);
-    -fx-effect: dropshadow(gaussian, rgba(5, 205, 153, 0.5), 16, 0, 0, 6);
+    -fx-background-color: linear-gradient(to right, #219150, #27ae60);
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.5), 16, 0, 0, 6);
 }
 
 .nav-btn-submit:pressed {
-    -fx-background-color: #04B888;
-    -fx-effect: dropshadow(gaussian, rgba(5, 205, 153, 0.2), 8, 0, 0, 2);
+    -fx-background-color: #219150;
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.2), 8, 0, 0, 2);
 }
 
 .nav-btn-text-next {
@@ -212,17 +212,17 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .nav-progress-bar {
-    -fx-accent: #4318FF;
+    -fx-accent: #3498db;
     -fx-background-color: #E0E5F2;
     -fx-background-radius: 4;
 }
 
 .nav-progress-bar > .bar {
-    -fx-background-color: linear-gradient(to right, #4318FF, #05CD99);
+    -fx-background-color: linear-gradient(to right, #3498db, #27ae60);
     -fx-background-radius: 4;
     -fx-background-insets: 0;
 }
@@ -234,13 +234,13 @@
 
 /* === SUMMARY PANEL === */
 .summary-panel {
-    -fx-background-color: linear-gradient(to bottom, #F8FAFF, #FFFFFF);
+    -fx-background-color: linear-gradient(to bottom, #F8F9FB, #FFFFFF);
     -fx-border-color: #E0E5F2;
     -fx-border-width: 0 0 0 1;
 }
 
 .summary-header {
-    -fx-background-color: linear-gradient(to right, #4318FF, #6B4EFF);
+    -fx-background-color: linear-gradient(to right, #3498db, #6dd5fa);
 }
 
 .summary-header-icon {
@@ -283,7 +283,7 @@
 }
 
 .summary-icon-container {
-    -fx-background-color: #F4F7FE;
+    -fx-background-color: #F8F9FB;
     -fx-background-radius: 10;
     -fx-pref-width: 36;
     -fx-pref-height: 36;
@@ -293,25 +293,25 @@
 }
 
 .summary-icon {
-    -fx-fill: #4318FF;
+    -fx-fill: #3498db;
 }
 
 .summary-item-title {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 11px;
     -fx-font-weight: bold;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
     -fx-text-transform: uppercase;
 }
 
 .summary-item-value {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .summary-item-value-complete {
-    -fx-text-fill: #05CD99;
+    -fx-text-fill: #27ae60;
     -fx-font-weight: bold;
 }
 
@@ -330,7 +330,7 @@
 
 .progress-ring {
     -fx-fill: transparent;
-    -fx-stroke: #4318FF;
+    -fx-stroke: #3498db;
     -fx-stroke-width: 6;
     -fx-stroke-dash-array: 0 220;
     -fx-stroke-line-cap: round;
@@ -340,7 +340,7 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .summary-separator {
@@ -351,20 +351,20 @@
 .total-label {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 .total-amount {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .total-hint {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 11px;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 /* === WIZARD CARDS (for steps 2, 4, 5) === */
@@ -374,25 +374,25 @@
     -fx-border-width: 1;
     -fx-border-radius: 16;
     -fx-background-radius: 16;
-    -fx-effect: dropshadow(gaussian, rgba(112, 144, 176, 0.08), 20, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 4);
     -fx-padding: 20;
 }
 
 .wizard-card:hover {
-    -fx-border-color: #A3AED0;
-    -fx-effect: dropshadow(gaussian, rgba(112, 144, 176, 0.15), 25, 0, 0, 8);
+    -fx-border-color: #7F8C8D;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 25, 0, 0, 8);
 }
 
 .wizard-card-selected {
-    -fx-background-color: linear-gradient(to bottom right, #F8F6FF, #FFFFFF);
-    -fx-border-color: #4318FF;
+    -fx-background-color: linear-gradient(to bottom right, #F8F9FB, #FFFFFF);
+    -fx-border-color: #3498db;
     -fx-border-width: 2;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.2), 20, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.2), 20, 0, 0, 4);
 }
 
 /* === BUTTONS === */
 .btn-primary {
-    -fx-background-color: linear-gradient(to right, #4318FF, #6B4EFF);
+    -fx-background-color: linear-gradient(to right, #3498db, #6dd5fa);
     -fx-text-fill: white;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-weight: bold;
@@ -400,20 +400,20 @@
     -fx-padding: 12 24;
     -fx-cursor: hand;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.25), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.25), 8, 0, 0, 2);
 }
 
 .btn-primary:hover {
-    -fx-background-color: linear-gradient(to right, #3311CC, #5840E0);
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.4), 12, 0, 0, 4);
+    -fx-background-color: linear-gradient(to right, #2980b9, #5dade2);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 12, 0, 0, 4);
 }
 
 .btn-primary:pressed {
-    -fx-background-color: #3311CC;
+    -fx-background-color: #2980b9;
 }
 
 .btn-success {
-    -fx-background-color: linear-gradient(to right, #05CD99, #00E6AC);
+    -fx-background-color: linear-gradient(to right, #27ae60, #2ecc71);
     -fx-text-fill: white;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-weight: bold;
@@ -421,17 +421,17 @@
     -fx-padding: 12 24;
     -fx-cursor: hand;
     -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(5, 205, 153, 0.25), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.25), 8, 0, 0, 2);
 }
 
 .btn-success:hover {
-    -fx-background-color: linear-gradient(to right, #04B888, #00D49E);
-    -fx-effect: dropshadow(gaussian, rgba(5, 205, 153, 0.4), 12, 0, 0, 4);
+    -fx-background-color: linear-gradient(to right, #219150, #27ae60);
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.4), 12, 0, 0, 4);
 }
 
 .btn-secondary {
-    -fx-background-color: #F4F7FE;
-    -fx-text-fill: #4318FF;
+    -fx-background-color: #F8F9FB;
+    -fx-text-fill: #3498db;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-weight: bold;
     -fx-font-size: 13px;
@@ -444,8 +444,8 @@
 }
 
 .btn-secondary:hover {
-    -fx-background-color: #E8E6FF;
-    -fx-border-color: #4318FF;
+    -fx-background-color: #EBF5FB;
+    -fx-border-color: #3498db;
 }
 
 /* === LABELS & TYPOGRAPHY === */
@@ -453,33 +453,33 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 26px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .header-subtitle {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 14px;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 .section-label {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .price-label {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4318FF;
+    -fx-text-fill: #3498db;
 }
 
 .price-label-small {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 11px;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 /* === FORM INPUTS === */
@@ -494,8 +494,8 @@
 }
 
 .text-field:focused {
-    -fx-border-color: #4318FF;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.1), 8, 0, 0, 0);
+    -fx-border-color: #3498db;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.1), 8, 0, 0, 0);
 }
 
 .text-area {
@@ -509,7 +509,7 @@
 }
 
 .text-area:focused {
-    -fx-border-color: #4318FF;
+    -fx-border-color: #3498db;
 }
 
 .text-area .content {
@@ -521,7 +521,7 @@
 .check-box {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .check-box > .box {
@@ -533,8 +533,8 @@
 }
 
 .check-box:selected > .box {
-    -fx-background-color: #4318FF;
-    -fx-border-color: #4318FF;
+    -fx-background-color: #3498db;
+    -fx-border-color: #3498db;
 }
 
 .check-box:selected > .box > .mark {
@@ -542,14 +542,14 @@
 }
 
 .check-box:hover > .box {
-    -fx-border-color: #4318FF;
+    -fx-border-color: #3498db;
 }
 
 /* === RADIO BUTTONS === */
 .radio-button {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 13px;
-    -fx-text-fill: #2B3674;
+    -fx-text-fill: #2C3E50;
 }
 
 .radio-button > .radio {
@@ -561,16 +561,16 @@
 }
 
 .radio-button:selected > .radio {
-    -fx-border-color: #4318FF;
+    -fx-border-color: #3498db;
 }
 
 .radio-button:selected > .radio > .dot {
-    -fx-background-color: #4318FF;
+    -fx-background-color: #3498db;
     -fx-background-radius: 5;
 }
 
 .radio-button:hover > .radio {
-    -fx-border-color: #4318FF;
+    -fx-border-color: #3498db;
 }
 
 /* === SCROLL PANE === */
@@ -587,17 +587,17 @@
 }
 
 .scroll-pane > .scroll-bar:vertical > .track {
-    -fx-background-color: #F4F7FE;
+    -fx-background-color: #F8F9FB;
     -fx-background-radius: 4;
 }
 
 .scroll-pane > .scroll-bar:vertical > .thumb {
-    -fx-background-color: #A3AED0;
+    -fx-background-color: #BDC3C7;
     -fx-background-radius: 4;
 }
 
 .scroll-pane > .scroll-bar:vertical > .thumb:hover {
-    -fx-background-color: #7F8CAD;
+    -fx-background-color: #95A5A6;
 }
 
 /* === SEPARATOR === */

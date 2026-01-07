@@ -14,9 +14,11 @@ public class Accommodation {
     private final StringProperty amenities;
     private final IntegerProperty numberOfRooms;
     private final StringProperty defaultRoomType;
+    private final IntegerProperty rating;
+    private final IntegerProperty pricePerNight;
 
     public Accommodation(int accommodationId, String name, String address, String contact,
-            String amenities, int numberOfRooms, String defaultRoomType) {
+            String amenities, int numberOfRooms, String defaultRoomType, int rating, int pricePerNight) {
         this.accommodationId = new SimpleIntegerProperty(accommodationId);
         this.name = new SimpleStringProperty(name);
         this.address = new SimpleStringProperty(address);
@@ -24,14 +26,28 @@ public class Accommodation {
         this.amenities = new SimpleStringProperty(amenities);
         this.numberOfRooms = new SimpleIntegerProperty(numberOfRooms);
         this.defaultRoomType = new SimpleStringProperty(defaultRoomType);
+        this.rating = new SimpleIntegerProperty(rating);
+        this.pricePerNight = new SimpleIntegerProperty(pricePerNight);
     }
 
     // Legacy constructor for compatibility
     public Accommodation(int accommodationId, String name, String address) {
-        this(accommodationId, name, address, "", "", 0, "Standard");
+        this(accommodationId, name, address, "", "", 0, "Standard", 3, 0);
     }
 
-    // Getters and Property accessors
+    public Accommodation(int accommodationId, String name, String address, String contact, String amenities, int numberOfRooms, String defaultRoomType) {
+        this.accommodationId = new SimpleIntegerProperty(accommodationId);
+        this.name = new SimpleStringProperty(name);
+        this.address = new SimpleStringProperty(address);
+        this.contact = new SimpleStringProperty(contact);
+        this.amenities = new SimpleStringProperty(amenities);
+        this.numberOfRooms = new SimpleIntegerProperty(numberOfRooms);
+        this.defaultRoomType = new SimpleStringProperty(defaultRoomType);
+        this.rating = new SimpleIntegerProperty(3);
+        this.pricePerNight = new SimpleIntegerProperty(0);
+
+    }
+
     public int getAccommodationId() {
         return accommodationId.get();
     }
@@ -86,6 +102,29 @@ public class Accommodation {
 
     public StringProperty defaultRoomTypeProperty() {
         return defaultRoomType;
+    }
+
+    public int getRating() {
+        return rating.get();
+    }
+
+    public IntegerProperty ratingProperty() {
+        return rating;
+    }
+
+    public int getPricePerNight() {
+        return pricePerNight.get();
+    }
+
+    public IntegerProperty pricePerNightProperty() {
+        return pricePerNight;
+    }
+
+    /**
+     * Get star rating as string (e.g., "★★★★★")
+     */
+    public String getStarRating() {
+        return "★".repeat(rating.get()) + "☆".repeat(5 - rating.get());
     }
 
     /**

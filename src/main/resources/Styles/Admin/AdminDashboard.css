@@ -1,4 +1,4 @@
-/* ADMIN DASHBOARD STYLES */
+﻿/* ADMIN DASHBOARD STYLES */
 
 /* Main Container */
 .dashboard-container {
@@ -13,20 +13,20 @@
 }
 
 .title-icon {
-    -fx-fill: #3498db;
+    -fx-fill: #6c5ce7;
 }
 
 .refresh-button {
-    -fx-background-color: #3498db;
+    -fx-background-color: #6c5ce7;
     -fx-text-fill: white;
     -fx-font-size: 13px;
     -fx-padding: 8 15;
-    -fx-background-radius: 5;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
 .refresh-button:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #5b4bc4;
 }
 
 .refresh-button .glyph-icon {
@@ -61,10 +61,10 @@
 }
 
 .bookings-card .stat-icon {
-    -fx-fill: #3498db;
+    -fx-fill: #6c5ce7;
 }
 .bookings-card .stat-value {
-    -fx-text-fill: #3498db;
+    -fx-text-fill: #6c5ce7;
 }
 
 .packages-card .stat-icon {
@@ -99,7 +99,7 @@
 }
 
 .section-title .glyph-icon {
-    -fx-fill: #3498db;
+    -fx-fill: #6c5ce7;
 }
 
 /* Chart Containers */
@@ -166,13 +166,13 @@
 }
 
 /* Pie Chart Colors */
-.default-color0.chart-pie { -fx-pie-color: #3498db; }
+.default-color0.chart-pie { -fx-pie-color: #6c5ce7; }
 .default-color1.chart-pie { -fx-pie-color: #2ecc71; }
 .default-color2.chart-pie { -fx-pie-color: #9b59b6; }
 .default-color3.chart-pie { -fx-pie-color: #e67e22; }
 .default-color4.chart-pie { -fx-pie-color: #e74c3c; }
 
 /* Bar Chart Colors */
-.default-color0.chart-bar { -fx-bar-fill: #3498db; }
+.default-color0.chart-bar { -fx-bar-fill: #6c5ce7; }
 .default-color1.chart-bar { -fx-bar-fill: #2ecc71; }
 .default-color2.chart-bar { -fx-bar-fill: #9b59b6; }

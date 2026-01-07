@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.cht.travelmanagement.Models.BookingData;
-import com.cht.travelmanagement.Models.Hotel;
+import com.cht.travelmanagement.Models.Accommodation;
 import com.cht.travelmanagement.Models.Model;
 
 import javafx.collections.FXCollections;
@@ -37,7 +37,7 @@ public class BookingStep4Controller implements Initializable {
     private VBox hotel_container;
 
     private BookingData bookingData;
-    private ObservableList<Hotel> allHotels;
+    private ObservableList<Accommodation> allHotels;
     private HBox selectedCard = null;
 
     @Override
@@ -62,7 +62,7 @@ public class BookingStep4Controller implements Initializable {
     }
 
     private void filterHotels() {
-        ObservableList<Hotel> filteredHotels = FXCollections.observableArrayList();
+        ObservableList<Accommodation> filteredHotels = FXCollections.observableArrayList();
 
         if (all_hotel_radio.isSelected()) {
             filteredHotels.addAll(allHotels);
@@ -77,7 +77,7 @@ public class BookingStep4Controller implements Initializable {
         displayHotels(filteredHotels);
     }
 
-    private void displayHotels(ObservableList<Hotel> hotels) {
+    private void displayHotels(ObservableList<Accommodation> hotels) {
         hotel_container.getChildren().clear();
         hotel_container.setSpacing(15);
         hotel_container.setPadding(new Insets(10));
@@ -89,7 +89,7 @@ public class BookingStep4Controller implements Initializable {
             return;
         }
 
-        for (Hotel hotel : hotels) {
+        for (Accommodation hotel : hotels) {
             HBox hotelCard = createHotelCard(hotel);
             hotel_container.getChildren().add(hotelCard);
         }
@@ -98,7 +98,7 @@ public class BookingStep4Controller implements Initializable {
         highlightSelectedHotel();
     }
 
-    private HBox createHotelCard(Hotel hotel) {
+    private HBox createHotelCard(Accommodation hotel) {
         HBox card = new HBox(15);
         card.setPadding(new Insets(15));
         card.setStyle(getCardStyle(false));
@@ -121,7 +121,7 @@ public class BookingStep4Controller implements Initializable {
         addressLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #7F8C8D;");
 
         // Room type
-        Label roomLabel = new Label("🛏 " + hotel.getRoomType());
+        Label roomLabel = new Label("🛏 " + hotel.getDefaultRoomType());
         roomLabel.setStyle("-fx-font-size: 12px; -fx-text-fill: #7F8C8D;");
 
         // Amenities
@@ -168,12 +168,12 @@ public class BookingStep4Controller implements Initializable {
         });
 
         // Store hotel ID for reference
-        card.setUserData(hotel.getHotelId());
+        card.setUserData(hotel.getAccommodationId());
 
         return card;
     }
 
-    private void selectHotel(Hotel hotel, HBox card) {
+    private void selectHotel(Accommodation hotel, HBox card) {
         // Deselect previous card
         if (selectedCard != null) {
             selectedCard.setStyle(getCardStyle(false));
@@ -187,7 +187,7 @@ public class BookingStep4Controller implements Initializable {
         int totalNights = Math.max(1, bookingData.getPackageDuration() - 1); // Duration minus 1 for check-out day
         int totalHotelPrice = hotel.getPricePerNight() * totalNights;
 
-        bookingData.setSelectedHotelId(hotel.getHotelId());
+        bookingData.setSelectedHotelId(hotel.getAccommodationId());
         bookingData.setSelectedHotelName(hotel.getName());
         bookingData.setHotelPrice(totalHotelPrice);
         bookingData.setHotelRating(hotel.getStarRating());

@@ -5,11 +5,11 @@ import java.util.ResourceBundle;
 
 import com.cht.travelmanagement.Models.BookingData;
 import com.cht.travelmanagement.Models.Model;
+import com.cht.travelmanagement.View.AlertUtility;
 import com.cht.travelmanagement.View.UserMenuOption;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -52,7 +52,9 @@ public class BookingNavigationController implements Initializable {
             Model.getInstance().getUserViewFactory().getBookingStep().set(currentStep);
         } else {
             // Go back to booking list or dashboard
-            Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.BOOKINGS);
+            if (AlertUtility.showConfirmation("Cancel Booking", "Exit Booking Wizard?", "All entered information will be lost.")) {
+                Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.BOOKINGS);
+            }
         }
     }
 
@@ -76,18 +78,10 @@ public class BookingNavigationController implements Initializable {
     private boolean validateCurrentStep(int step) {
         if (!bookingData.validateStep(step)) {
             String errorMessage = bookingData.getValidationError(step);
-            showValidationError(errorMessage);
+            AlertUtility.showWarning("Validation Error", "Please complete this step", errorMessage);
             return false;
         }
         return true;
-    }
-
-    private void showValidationError(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Validation Error");
-        alert.setHeaderText("Please complete this step");
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 
     private void submitBooking() {
@@ -104,7 +98,7 @@ public class BookingNavigationController implements Initializable {
             if (newClientId > 0) {
                 bookingData.setClientId(newClientId);
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error", "Failed to create client.");
+                AlertUtility.showError("Creation Failed", "Client Error", "Failed to create client record. Please check the details.");
                 return;
             }
         }
@@ -113,9 +107,8 @@ public class BookingNavigationController implements Initializable {
         boolean success = Model.getInstance().createBooking(bookingData);
 
         if (success) {
-            showAlert(Alert.AlertType.INFORMATION, "Success",
-                    "Booking created successfully!\n\n"
-                    + "Client: " + bookingData.getClientName() + "\n"
+            AlertUtility.showSuccess("Booking Confirmed", "Booking Created Successfully!",
+                    "Client: " + bookingData.getClientName() + "\n"
                     + "Package: " + bookingData.getSelectedPackageName() + "\n"
                     + "Total: ₱" + String.format("%,.2f", (double) bookingData.calculateTotalPrice()));
 
@@ -123,16 +116,8 @@ public class BookingNavigationController implements Initializable {
             Model.getInstance().getUserViewFactory().resetBookingWizard();
             Model.getInstance().getUserViewFactory().getUserSelectedMenuItem().set(UserMenuOption.BOOKINGS);
         } else {
-            showAlert(Alert.AlertType.ERROR, "Error", "Failed to create booking. Please try again.");
+            AlertUtility.showError("Booking Failed", "System Error", "Failed to create booking. Please try again or contact support.");
         }
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 
     private void updateUI(int currentStep) {

@@ -8,7 +8,9 @@ import java.util.ResourceBundle;
 
 import com.cht.travelmanagement.Models.Client;
 import com.cht.travelmanagement.Models.Model;
+import com.cht.travelmanagement.View.AlertUtility;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -18,7 +20,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
@@ -33,6 +34,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 
 public class ClientsController implements Initializable {
 
@@ -110,24 +112,28 @@ public class ClientsController implements Initializable {
 
             {
                 // Edit button
-                FontAwesomeIconView editIcon = new FontAwesomeIconView();
-                editIcon.setGlyphName("EDIT");
+                FontAwesomeIconView editIcon = new FontAwesomeIconView(FontAwesomeIcon.EDIT);
                 editIcon.setSize("14");
-                editIcon.setStyle("-fx-fill: #3498db;");
+                editIcon.setFill(Color.web("#3498db"));
                 editBtn.setGraphic(editIcon);
                 editBtn.setStyle("-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 5;");
                 editBtn.setTooltip(new Tooltip("Edit client"));
-                editBtn.setOnAction(e -> handleEditClient(getTableRow().getItem()));
+                editBtn.setOnAction(e -> {
+                    Client client = getTableView().getItems().get(getIndex());
+                    handleEditClient(client);
+                });
 
                 // Delete button
-                FontAwesomeIconView deleteIcon = new FontAwesomeIconView();
-                deleteIcon.setGlyphName("TRASH");
+                FontAwesomeIconView deleteIcon = new FontAwesomeIconView(FontAwesomeIcon.TRASH);
                 deleteIcon.setSize("14");
-                deleteIcon.setStyle("-fx-fill: #e74c3c;");
+                deleteIcon.setFill(Color.web("#e74c3c"));
                 deleteBtn.setGraphic(deleteIcon);
                 deleteBtn.setStyle("-fx-background-color: transparent; -fx-cursor: hand; -fx-padding: 5;");
                 deleteBtn.setTooltip(new Tooltip("Delete client"));
-                deleteBtn.setOnAction(e -> handleDeleteClient(getTableRow().getItem()));
+                deleteBtn.setOnAction(e -> {
+                    Client client = getTableView().getItems().get(getIndex());
+                    handleDeleteClient(client);
+                });
 
                 container.setAlignment(Pos.CENTER);
                 container.getChildren().addAll(editBtn, deleteBtn);
@@ -188,19 +194,13 @@ public class ClientsController implements Initializable {
             return;
         }
 
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
-        confirm.setTitle("Delete Client");
-        confirm.setHeaderText("Delete " + client.getName() + "?");
-        confirm.setContentText("This action cannot be undone. Are you sure you want to delete this client?");
-
-        Optional<ButtonType> result = confirm.showAndWait();
-        if (result.isPresent() && result.get() == ButtonType.OK) {
+        if (AlertUtility.showConfirmation("Delete Client", "Delete " + client.getName() + "?", "This action cannot be undone. Are you sure you want to delete this client?")) {
             boolean deleted = Model.getInstance().deleteClient(client.getClientId());
             if (deleted) {
                 loadClients(); // Refresh the table
-                showAlert(Alert.AlertType.INFORMATION, "Success", "Client deleted successfully.");
+                AlertUtility.showSuccess("Success", "Client Deleted", "Client deleted successfully.");
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error", "Could not delete client. The client may have existing bookings.");
+                AlertUtility.showError("Error", "Delete Failed", "Could not delete client. The client may have existing bookings.");
             }
         }
     }
@@ -298,19 +298,11 @@ public class ClientsController implements Initializable {
 
             if (success) {
                 loadClients();
-                showAlert(Alert.AlertType.INFORMATION, "Success",
+                AlertUtility.showSuccess("Success", client == null ? "Client Added" : "Client Updated",
                         client == null ? "Client added successfully." : "Client updated successfully.");
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error", "Could not save client. Please try again.");
+                AlertUtility.showError("Error", "Save Failed", "Could not save client. Please try again.");
             }
         });
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }

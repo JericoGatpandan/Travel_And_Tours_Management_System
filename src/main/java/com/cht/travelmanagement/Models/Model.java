@@ -170,7 +170,7 @@ public class Model {
     /**
      * Get Hotels from Database
      */
-    public ObservableList<Hotel> getHotels() {
+    public ObservableList<Accommodation> getHotels() {
         BookingRepository bookingRepository = new BookingRepositoryImpl();
         return bookingRepository.getHotels();
     }

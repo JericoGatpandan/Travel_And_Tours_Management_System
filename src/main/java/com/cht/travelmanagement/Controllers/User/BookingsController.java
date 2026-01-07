@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.cht.travelmanagement.Models.Booking;
 import com.cht.travelmanagement.Models.Model;
+import com.cht.travelmanagement.View.AlertUtility;
 import com.cht.travelmanagement.View.UserMenuOption;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -16,9 +17,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -178,7 +177,7 @@ public class BookingsController implements Initializable {
                     viewBtn.setOnAction(e -> handleViewBooking(booking));
                     cancelBtn.setOnAction(e -> handleCancelBooking(booking));
 
-                    // Disable cancel button if already cancelled or completed
+                    // Disable cancel button if already canceled or completed
                     String status = booking.getStatus();
                     boolean canCancel = status != null
                             && !status.equalsIgnoreCase("CANCELLED")
@@ -265,10 +264,6 @@ public class BookingsController implements Initializable {
     }
 
     private void handleViewBooking(Booking booking) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Booking Details");
-        alert.setHeaderText("Booking #BK-" + String.format("%04d", booking.getBookingId()));
-
         String details = String.format(
                 "Client: %s\n"
                 + "Package: %s\n"
@@ -282,48 +277,32 @@ public class BookingsController implements Initializable {
                 booking.getStatus()
         );
 
-        alert.setContentText(details);
-        alert.showAndWait();
+        AlertUtility.showInfo("Booking Details", "Booking #BK-" + String.format("%04d", booking.getBookingId()), details);
     }
 
     private void handleCancelBooking(Booking booking) {
-        Alert confirmAlert = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmAlert.setTitle("Cancel Booking");
-        confirmAlert.setHeaderText("Cancel Booking #BK-" + String.format("%04d", booking.getBookingId()));
-        confirmAlert.setContentText(
-                String.format("Are you sure you want to cancel this booking?\n\n"
-                        + "Client: %s\n"
-                        + "Package: %s\n"
-                        + "Destination: %s\n\n"
-                        + "This action cannot be undone.",
-                        booking.getClientName(),
-                        booking.getPackageName(),
-                        booking.getDestination())
-        );
+        String content = String.format("Are you sure you want to cancel this booking?\n\n"
+                + "Client: %s\n"
+                + "Package: %s\n"
+                + "Destination: %s\n\n"
+                + "This action cannot be undone.",
+                booking.getClientName(),
+                booking.getPackageName(),
+                booking.getDestination());
 
-        confirmAlert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                boolean success = Model.getInstance().cancelBooking(booking.getBookingId());
+        if (AlertUtility.showConfirmation("Cancel Booking", "Cancel Booking #BK-" + String.format("%04d", booking.getBookingId()), content)) {
+            boolean success = Model.getInstance().cancelBooking(booking.getBookingId());
 
-                if (success) {
-                    // Update the booking status in the local list
-                    booking.setStatus("CANCELLED");
-                    booking_table.refresh();
-                    updateStats();
+            if (success) {
+                // Update the booking status in the local list
+                booking.setStatus("CANCELLED");
+                booking_table.refresh();
+                updateStats();
 
-                    Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-                    successAlert.setTitle("Success");
-                    successAlert.setHeaderText(null);
-                    successAlert.setContentText("Booking #BK-" + String.format("%04d", booking.getBookingId()) + " has been cancelled.");
-                    successAlert.showAndWait();
-                } else {
-                    Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Error");
-                    errorAlert.setHeaderText("Failed to Cancel Booking");
-                    errorAlert.setContentText("An error occurred while cancelling the booking. Please try again.");
-                    errorAlert.showAndWait();
-                }
+                AlertUtility.showSuccess("Success", "Booking Cancelled", "Booking #BK-" + String.format("%04d", booking.getBookingId()) + " has been cancelled.");
+            } else {
+                AlertUtility.showError("Error", "Failed to Cancel Booking", "An error occurred while cancelling the booking. Please try again.");
             }
-        });
+        }
     }
 }

@@ -1,20 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.geometry.Insets?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<AnchorPane stylesheets="@../../../Styles/User/BookingWizard.css" style="-fx-background-color: #F4F7FE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep6Controller">
+<AnchorPane style="-fx-background-color: #F4F7FE;" stylesheets="@../../../Styles/User/BookingWizard.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep6Controller">
    <children>
-      <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <VBox spacing="25" style="-fx-background-color: white;">
                <padding>
@@ -26,7 +20,7 @@
                      <children>
                         <StackPane>
                            <Circle radius="40" style="-fx-fill: linear-gradient(to bottom right, #E8FFF6, #D4F7E8);" />
-                           <FontAwesomeIconView glyphName="CHECK" size="35" style="-fx-fill: #05CD99;" />
+                           <FontAwesomeIconView fill="#05cd99" glyphName="CHECK" size="35" />
                         </StackPane>
                         <Label style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2B3674;" text="Review Your Booking" />
                         <Label styleClass="header-subtitle" text="Please review all details before confirming your booking" />
@@ -50,7 +44,7 @@
                         <!-- Travel Date -->
                         <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20; -fx-border-color: transparent transparent #E0E5F2 transparent; -fx-border-width: 0 0 1 0;">
                            <StackPane style="-fx-background-color: #FFF3E6; -fx-background-radius: 12; -fx-pref-width: 44; -fx-pref-height: 44; -fx-min-width: 44; -fx-min-height: 44;">
-                              <FontAwesomeIconView glyphName="CALENDAR" size="18" style="-fx-fill: #FFB547;" />
+                              <FontAwesomeIconView fill="#ffb547" glyphName="CALENDAR" size="18" text="" />
                            </StackPane>
                            <VBox spacing="3" HBox.hgrow="ALWAYS">
                               <Label style="-fx-font-size: 11px; -fx-text-fill: #A3AED0; -fx-font-weight: bold;" text="TRAVEL DATE" />
@@ -61,7 +55,7 @@
                         <!-- Package -->
                         <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20; -fx-border-color: transparent transparent #E0E5F2 transparent; -fx-border-width: 0 0 1 0;">
                            <StackPane style="-fx-background-color: #E6F9F5; -fx-background-radius: 12; -fx-pref-width: 44; -fx-pref-height: 44; -fx-min-width: 44; -fx-min-height: 44;">
-                              <FontAwesomeIconView glyphName="SUITCASE" size="18" style="-fx-fill: #05CD99;" />
+                              <FontAwesomeIconView fill="#05cd99" glyphName="SUITCASE" size="18" />
                            </StackPane>
                            <VBox spacing="3" HBox.hgrow="ALWAYS">
                               <Label style="-fx-font-size: 11px; -fx-text-fill: #A3AED0; -fx-font-weight: bold;" text="SELECTED PACKAGE" />
@@ -72,7 +66,7 @@
                         <!-- Hotel -->
                         <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20; -fx-border-color: transparent transparent #E0E5F2 transparent; -fx-border-width: 0 0 1 0;">
                            <StackPane style="-fx-background-color: #E8E6FF; -fx-background-radius: 12; -fx-pref-width: 44; -fx-pref-height: 44; -fx-min-width: 44; -fx-min-height: 44;">
-                              <FontAwesomeIconView glyphName="BUILDING" size="18" style="-fx-fill: #4318FF;" />
+                              <FontAwesomeIconView fill="#4318ff" glyphName="BUILDING" size="18" />
                            </StackPane>
                            <VBox spacing="3" HBox.hgrow="ALWAYS">
                               <Label style="-fx-font-size: 11px; -fx-text-fill: #A3AED0; -fx-font-weight: bold;" text="ACCOMMODATION" />
@@ -83,7 +77,7 @@
                         <!-- Vehicle -->
                         <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 20;">
                            <StackPane style="-fx-background-color: #FFECE9; -fx-background-radius: 12; -fx-pref-width: 44; -fx-pref-height: 44; -fx-min-width: 44; -fx-min-height: 44;">
-                              <FontAwesomeIconView glyphName="CAR" size="18" style="-fx-fill: #EE5D50;" />
+                              <FontAwesomeIconView fill="#ee5d50" glyphName="CAR" size="18" />
                            </StackPane>
                            <VBox spacing="3" HBox.hgrow="ALWAYS">
                               <Label style="-fx-font-size: 11px; -fx-text-fill: #A3AED0; -fx-font-weight: bold;" text="TRANSPORTATION" />
@@ -104,7 +98,7 @@
                   
                   <!-- Terms and Conditions -->
                   <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #FFFBF5; -fx-background-radius: 12; -fx-padding: 18; -fx-border-color: #FFE5C4; -fx-border-radius: 12;">
-                     <FontAwesomeIconView glyphName="INFO_CIRCLE" size="18" style="-fx-fill: #FFB547;" />
+                     <FontAwesomeIconView fill="#ffb547" glyphName="INFO_CIRCLE" size="18" />
                      <CheckBox fx:id="terms_condition_check" mnemonicParsing="false" style="-fx-text-fill: #2B3674;" text="I agree to the Terms and Conditions and Cancellation Policy" />
                   </HBox>
                </children>

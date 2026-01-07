@@ -5,6 +5,7 @@ module com.cht.travelmanagement {
     requires mysql.connector.j;
 	requires javafx.base;
     requires de.jensd.fx.glyphs.fontawesome;
+    requires de.jensd.fx.glyphs.commons;
     requires java.desktop;
 
     opens com.cht.travelmanagement to javafx.fxml;

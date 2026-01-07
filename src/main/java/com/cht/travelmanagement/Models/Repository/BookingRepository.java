@@ -1,9 +1,6 @@
 package com.cht.travelmanagement.Models.Repository;
 
-import com.cht.travelmanagement.Models.Booking;
-import com.cht.travelmanagement.Models.BookingData;
-import com.cht.travelmanagement.Models.Hotel;
-import com.cht.travelmanagement.Models.Vehicle;
+import com.cht.travelmanagement.Models.*;
 
 import javafx.collections.ObservableList;
 
@@ -15,7 +12,7 @@ public interface BookingRepository {
 
     ObservableList<Booking> getAllBookings();
 
-    ObservableList<Hotel> getHotels();
+    ObservableList<Accommodation> getHotels();
 
     ObservableList<Vehicle> getVehicles();
 

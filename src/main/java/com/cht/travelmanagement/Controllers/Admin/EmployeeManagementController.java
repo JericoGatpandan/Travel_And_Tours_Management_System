@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import com.cht.travelmanagement.Models.Employee;
 import com.cht.travelmanagement.Models.Repository.EmployeeRepository;
 import com.cht.travelmanagement.Models.Repository.Implementation.EmployeeRepositoryImpl;
+import com.cht.travelmanagement.View.AlertUtility;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -13,9 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -257,23 +256,18 @@ public class EmployeeManagementController implements Initializable {
 
     private void toggleEmployeeStatus(Employee emp) {
         String action = emp.isActive() ? "deactivate" : "activate";
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Toggle Employee Status");
-        alert.setHeaderText(action.substring(0, 1).toUpperCase() + action.substring(1) + " " + emp.getName() + "?");
-        alert.setContentText("Are you sure you want to " + action + " this employee?");
-
-        alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
-                boolean success = employeeRepository.toggleEmployeeStatus(emp.getEmployeeId(), !emp.isActive());
-                if (success) {
-                    showAlert(Alert.AlertType.INFORMATION, "Success",
-                            "Employee " + action + "d successfully!");
-                    loadEmployees();
-                } else {
-                    showAlert(Alert.AlertType.ERROR, "Error", "Failed to " + action + " employee.");
-                }
+        if (AlertUtility.showConfirmation("Toggle Status", 
+                action.substring(0, 1).toUpperCase() + action.substring(1) + " " + emp.getName() + "?", 
+                "Are you sure you want to " + action + " this employee?")) {
+            
+            boolean success = employeeRepository.toggleEmployeeStatus(emp.getEmployeeId(), !emp.isActive());
+            if (success) {
+                AlertUtility.showSuccess("Success", "Status Updated", "Employee " + action + "d successfully!");
+                loadEmployees();
+            } else {
+                AlertUtility.showError("Error", "Update Failed", "Failed to " + action + " employee.");
             }
-        });
+        }
     }
 
     private void saveEmployee() {
@@ -305,7 +299,7 @@ public class EmployeeManagementController implements Initializable {
         }
 
         if (success) {
-            showAlert(Alert.AlertType.INFORMATION, "Success",
+            AlertUtility.showSuccess("Success", isEditMode ? "Employee Updated" : "Employee Created",
                     isEditMode ? "Employee updated successfully!" : "Employee created successfully!");
             hideForm();
             loadEmployees();
@@ -382,13 +376,5 @@ public class EmployeeManagementController implements Initializable {
         clearForm();
         isEditMode = false;
         selectedEmployee = null;
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String message) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -7,12 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
-import com.cht.travelmanagement.Models.Booking;
-import com.cht.travelmanagement.Models.BookingData;
-import com.cht.travelmanagement.Models.DatabaseDriver;
-import com.cht.travelmanagement.Models.Hotel;
+import com.cht.travelmanagement.Models.*;
 import com.cht.travelmanagement.Models.Repository.BookingRepository;
-import com.cht.travelmanagement.Models.Vehicle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -89,8 +85,8 @@ public class BookingRepositoryImpl implements BookingRepository {
     }
 
     @Override
-    public ObservableList<Hotel> getHotels() {
-        ObservableList<Hotel> hotels = FXCollections.observableArrayList();
+    public ObservableList<Accommodation> getHotels() {
+        ObservableList<Accommodation> hotels = FXCollections.observableArrayList();
         String query = "SELECT accommodationId, name, address, contact, amenities, numberOfRooms, defaultRoomType FROM accommodation";
 
         try (Connection connection = DatabaseDriver.getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(query); ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -108,7 +104,7 @@ public class BookingRepositoryImpl implements BookingRepository {
                 int rating = determineHotelRating(name, amenities);
                 int pricePerNight = calculateHotelPrice(rating);
 
-                Hotel hotel = new Hotel(hotelId, name, address, contact, amenities, numberOfRooms, roomType, rating, pricePerNight);
+                Accommodation hotel = new Accommodation(hotelId, name, address, contact, amenities, numberOfRooms, roomType, rating, pricePerNight);
                 hotels.add(hotel);
             }
 

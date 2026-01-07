@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.geometry.Insets?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
-<AnchorPane stylesheets="@../../../Styles/User/BookingWizard.css" style="-fx-background-color: #F4F7FE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
+<AnchorPane style="-fx-background-color: #F4F7FE;" stylesheets="@../../../Styles/User/BookingWizard.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cht.travelmanagement.Controllers.User.BookingWizard.BookingStep3Controller">
    <children>
-      <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" styleClass="scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="scroll-pane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
             <VBox spacing="25" style="-fx-background-color: white;">
                <padding>
@@ -32,7 +31,7 @@
                   <VBox spacing="15" style="-fx-background-color: #F8FAFF; -fx-background-radius: 16; -fx-padding: 25;">
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="10">
-                           <FontAwesomeIconView glyphName="PLUS_CIRCLE" size="18" style="-fx-fill: #4318FF;" />
+                           <FontAwesomeIconView fill="#4318ff" glyphName="PLUS" size="18" />
                            <Label styleClass="section-label" text="Available Add-ons" />
                         </HBox>
                         
@@ -83,7 +82,7 @@
                   <VBox spacing="15">
                      <children>
                         <HBox alignment="CENTER_LEFT" spacing="10">
-                           <FontAwesomeIconView glyphName="COMMENT" size="18" style="-fx-fill: #4318FF;" />
+                           <FontAwesomeIconView fill="#4318ff" glyphName="COMMENT" size="18" />
                            <Label styleClass="section-label" text="Special Requests" />
                         </HBox>
                         <Label styleClass="header-subtitle" text="Let us know about any dietary restrictions, allergies, or special needs" />

@@ -1,4 +1,4 @@
-/* EMPLOYEE MANAGEMENT STYLES */
+﻿/* EMPLOYEE MANAGEMENT STYLES */
 
 /* Main Container */
 .content-container {
@@ -13,21 +13,21 @@
 }
 
 .page-title .glyph-icon {
-    -fx-fill: #9b59b6;
+    -fx-fill: #6c5ce7;
 }
 
 /* Buttons */
 .primary-button {
-    -fx-background-color: #9b59b6;
+    -fx-background-color: #6c5ce7;
     -fx-text-fill: white;
     -fx-font-size: 13px;
     -fx-padding: 10 20;
-    -fx-background-radius: 5;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
 .primary-button:hover {
-    -fx-background-color: #8e44ad;
+    -fx-background-color: #5b4bc4;
 }
 
 .primary-button .glyph-icon {
@@ -39,7 +39,7 @@
     -fx-text-fill: #2c3e50;
     -fx-font-size: 13px;
     -fx-padding: 10 20;
-    -fx-background-radius: 5;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
@@ -55,14 +55,14 @@
 .search-field {
     -fx-background-color: white;
     -fx-border-color: #dcdde1;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
     -fx-padding: 8 15;
     -fx-font-size: 13px;
 }
 
 .search-field:focused {
-    -fx-border-color: #9b59b6;
+    -fx-border-color: #6c5ce7;
 }
 
 /* Table View */
@@ -108,16 +108,16 @@
 
 /* Action Buttons in Table */
 .action-button-edit {
-    -fx-background-color: #3498db;
+    -fx-background-color: #6c5ce7;
     -fx-text-fill: white;
     -fx-font-size: 11px;
     -fx-padding: 5 10;
-    -fx-background-radius: 3;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
 .action-button-edit:hover {
-    -fx-background-color: #2980b9;
+    -fx-background-color: #5b4bc4;
 }
 
 .action-button-toggle {
@@ -125,7 +125,7 @@
     -fx-text-fill: white;
     -fx-font-size: 11px;
     -fx-padding: 5 10;
-    -fx-background-radius: 3;
+    -fx-background-radius: 8;
     -fx-cursor: hand;
 }
 
@@ -154,14 +154,14 @@
 .text-field, .password-field, .combo-box {
     -fx-background-color: white;
     -fx-border-color: #dcdde1;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
     -fx-padding: 8 12;
     -fx-font-size: 13px;
 }
 
 .text-field:focused, .password-field:focused, .combo-box:focused {
-    -fx-border-color: #9b59b6;
+    -fx-border-color: #6c5ce7;
 }
 
 /* Checkbox */
@@ -173,12 +173,12 @@
 .check-box .box {
     -fx-background-color: white;
     -fx-border-color: #dcdde1;
-    -fx-border-radius: 3;
+    -fx-border-radius: 8;
 }
 
 .check-box:selected .box {
-    -fx-background-color: #9b59b6;
-    -fx-border-color: #9b59b6;
+    -fx-background-color: #6c5ce7;
+    -fx-border-color: #6c5ce7;
 }
 
 .check-box:selected .mark {

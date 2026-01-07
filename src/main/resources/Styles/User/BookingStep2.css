@@ -7,7 +7,7 @@
     -fx-border-color: #E0E5F2;
     -fx-border-radius: 16;
     -fx-border-width: 1;
-    -fx-effect: dropshadow(gaussian, rgba(112, 144, 176, 0.08), 20, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 20, 0, 0, 4);
     -fx-padding: 20;
     -fx-spacing: 10;
     -fx-alignment: TOP_LEFT;
@@ -16,16 +16,16 @@
 }
 
 .tour-card:hover {
-    -fx-border-color: #A3AED0;
-    -fx-effect: dropshadow(gaussian, rgba(112, 144, 176, 0.18), 25, 0, 0, 8);
+    -fx-border-color: #BDC3C7;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 25, 0, 0, 8);
 }
 
 /* Selected Card State */
 .tour-card-selected {
-    -fx-background-color: linear-gradient(to bottom right, #F8F6FF, #FFFFFF);
-    -fx-border-color: #4318FF;
+    -fx-background-color: linear-gradient(to bottom right, #F8F9FB, #FFFFFF);
+    -fx-border-color: #3498db;
     -fx-border-width: 2;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.2), 20, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.2), 20, 0, 0, 4);
 }
 
 /* Card Title */
@@ -33,16 +33,16 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-fill: #2B3674;
-    -fx-text-fill: #2B3674;
+    -fx-fill: #2C3E50;
+    -fx-text-fill: #2C3E50;
 }
 
 /* Description Text */
 .card-description {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
-    -fx-fill: #A3AED0;
-    -fx-text-fill: #A3AED0;
+    -fx-fill: #7F8C8D;
+    -fx-text-fill: #7F8C8D;
     -fx-wrap-text: true;
 }
 
@@ -51,11 +51,11 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 11px;
     -fx-font-weight: bold;
-    -fx-text-fill: #707EAE;
+    -fx-text-fill: #7F8C8D;
 }
 
 .card-stat-icon {
-    -fx-fill: #4318FF;
+    -fx-fill: #3498db;
     -fx-font-size: 14px;
 }
 
@@ -64,17 +64,17 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-fill: #2B3674;
-    -fx-text-fill: #2B3674;
+    -fx-fill: #2C3E50;
+    -fx-text-fill: #2C3E50;
 }
 
 /* List Items (Tags) */
 .card-list-item {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 11px;
-    -fx-text-fill: #4318FF;
+    -fx-text-fill: #3498db;
     -fx-padding: 4 10;
-    -fx-background-color: #F4F7FE;
+    -fx-background-color: #EBF5FB;
     -fx-background-radius: 8;
 }
 
@@ -83,18 +83,18 @@
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #4318FF;
+    -fx-text-fill: #3498db;
 }
 
 .card-price-label {
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-size: 11px;
-    -fx-text-fill: #A3AED0;
+    -fx-text-fill: #7F8C8D;
 }
 
 /* Primary Button */
 .card-btn-primary {
-    -fx-background-color: linear-gradient(to right, #4318FF, #6B4EFF);
+    -fx-background-color: linear-gradient(to right, #3498db, #6dd5fa);
     -fx-text-fill: white;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-weight: bold;
@@ -102,12 +102,12 @@
     -fx-background-radius: 10;
     -fx-cursor: hand;
     -fx-padding: 10 20;
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.25), 8, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.25), 8, 0, 0, 2);
 }
 
 .card-btn-primary:hover {
-    -fx-background-color: linear-gradient(to right, #3311CC, #5840E0);
-    -fx-effect: dropshadow(gaussian, rgba(67, 24, 255, 0.4), 12, 0, 0, 4);
+    -fx-background-color: linear-gradient(to right, #2980b9, #5dade2);
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 12, 0, 0, 4);
 }
 
 .card-btn-primary .glyph-icon {
@@ -116,8 +116,8 @@
 
 /* Secondary Button */
 .card-btn-secondary {
-    -fx-background-color: #F4F7FE;
-    -fx-text-fill: #4318FF;
+    -fx-background-color: #F8F9FB;
+    -fx-text-fill: #3498db;
     -fx-font-family: "Segoe UI", Arial, sans-serif;
     -fx-font-weight: bold;
     -fx-font-size: 12px;
@@ -130,17 +130,17 @@
 }
 
 .card-btn-secondary:hover {
-    -fx-background-color: #E8E6FF;
-    -fx-border-color: #4318FF;
+    -fx-background-color: #EBF5FB;
+    -fx-border-color: #3498db;
 }
 
 .card-btn-secondary .glyph-icon {
-    -fx-fill: #4318FF;
+    -fx-fill: #3498db;
 }
 
 /* Selected indicator badge */
 .selected-badge {
-    -fx-background-color: #05CD99;
+    -fx-background-color: #27ae60;
     -fx-background-radius: 8;
     -fx-padding: 4 12;
 }

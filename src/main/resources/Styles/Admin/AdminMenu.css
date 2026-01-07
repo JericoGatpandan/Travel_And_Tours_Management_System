@@ -1,8 +1,8 @@
-/* ADMIN SIDEBAR THEME - Professional & Clean */
+/* ADMIN SIDEBAR THEME - Modern Indigo */
 
 /* 1. Main Sidebar Background */
 .sidebar-container {
-    -fx-background-color: linear-gradient(to bottom, #2c3e50, #34495e);
+    -fx-background-color: #1e1e2d; /* Modern Dark Background */
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 2, 0);
     -fx-spacing: 10;
     -fx-padding: 15;
@@ -30,7 +30,7 @@
 /* 2. The Menu Buttons (Normal State) */
 .menu-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #bdc3c7;
+    -fx-text-fill: #a0a0c0; /* Softer text color for better contrast */
     -fx-font-size: 14px;
     -fx-alignment: CENTER_LEFT;
     -fx-cursor: hand;
@@ -42,28 +42,28 @@
 
 /* 3. Target the ICONS (Normal State) */
 .menu-button .glyph-icon {
-    -fx-fill: #bdc3c7;
+    -fx-fill: #a0a0c0;
 }
 
 /* 4. Menu Buttons (Hover State) */
 .menu-button:hover {
-    -fx-background-color: rgba(52, 152, 219, 0.3);
+    -fx-background-color: rgba(108, 92, 231, 0.15); /* Indigo tint */
     -fx-text-fill: #ffffff;
 }
 
 /* 5. Icons on Hover */
 .menu-button:hover .glyph-icon {
-    -fx-fill: #3498db;
+    -fx-fill: #6c5ce7; /* Indigo */
 }
 
 /* 6. Menu Buttons (Pressed State) */
 .menu-button:pressed {
-    -fx-background-color: rgba(52, 152, 219, 0.5);
+    -fx-background-color: rgba(108, 92, 231, 0.3);
 }
 
 /* 7. Active Menu Button State */
 .menu-button-active {
-    -fx-background-color: #3498db;
+    -fx-background-color: #6c5ce7; /* Indigo Primary */
     -fx-text-fill: #ffffff;
     -fx-background-radius: 8;
 }
@@ -79,7 +79,7 @@
 }
 
 .logout-button:hover {
-    -fx-background-color: rgba(231, 76, 60, 0.3);
+    -fx-background-color: rgba(231, 76, 60, 0.2);
     -fx-text-fill: #e74c3c;
 }
 

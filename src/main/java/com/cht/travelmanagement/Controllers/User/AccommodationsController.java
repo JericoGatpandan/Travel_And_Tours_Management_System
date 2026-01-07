@@ -18,6 +18,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class AccommodationsController implements Initializable {
 
@@ -69,7 +70,7 @@ public class AccommodationsController implements Initializable {
         FontAwesomeIconView hotelIcon = new FontAwesomeIconView();
         hotelIcon.setGlyphName("BUILDING");
         hotelIcon.setSize("24");
-        hotelIcon.setStyle("-fx-fill: #3498db;");
+        hotelIcon.setFill(Color.web("#3498db"));
 
         Label nameLabel = new Label(acc.getName());
         nameLabel.setStyle("-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: #2C3E50;");

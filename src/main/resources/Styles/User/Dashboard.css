@@ -12,7 +12,7 @@
 }
 .dashboard-container {
     -fx-background-color: #F5F7FA;
-    -fx-padding: 20;
+    -fx-padding: 30 35 30 35;
     -fx-spacing: 20;
 }
 

@@ -1,0 +1,23 @@
+/* TOUR PACKAGES VIEW STYLES */
+
+.page-container {
+    -fx-padding: 30 35 30 35; /* Increased padding for better spacing */
+}
+
+.search-container {
+    -fx-max-width: 500;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 10 0 0 0;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* Ensure the grid doesn't feel cramped */
+#packages_grid {
+    -fx-alignment: TOP_LEFT;
+}

@@ -6,10 +6,10 @@ import java.util.ResourceBundle;
 
 import com.cht.travelmanagement.Models.BookingData;
 import com.cht.travelmanagement.Models.Model;
+import com.cht.travelmanagement.View.AlertUtility;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
@@ -91,8 +91,7 @@ public class BookingStep6Controller implements Initializable {
      */
     public boolean submitBooking() {
         if (!bookingData.isTermsAccepted()) {
-            showAlert(Alert.AlertType.WARNING, "Terms Required",
-                    "Please accept the terms and conditions before submitting.");
+            AlertUtility.showWarning("Terms Required", "Terms Not Accepted", "Please accept the terms and conditions before submitting.");
             return false;
         }
 
@@ -115,8 +114,7 @@ public class BookingStep6Controller implements Initializable {
                 bookingData.setClientId(newClientId);
                 System.out.println("Created new client with ID: " + newClientId);
             } else {
-                showAlert(Alert.AlertType.ERROR, "Error",
-                        "Failed to create new client. Please try again.");
+                AlertUtility.showError("Error", "Client Creation Failed", "Failed to create new client. Please try again.");
                 return false;
             }
         }
@@ -125,7 +123,7 @@ public class BookingStep6Controller implements Initializable {
         boolean success = Model.getInstance().createBooking(bookingData);
 
         if (success) {
-            showAlert(Alert.AlertType.INFORMATION, "Booking Confirmed",
+            AlertUtility.showSuccess("Booking Confirmed", "Booking Successful!",
                     "Your booking has been successfully created!\n\n"
                     + "Client: " + bookingData.getClientName() + "\n"
                     + "Package: " + bookingData.getSelectedPackageName() + "\n"
@@ -136,8 +134,7 @@ public class BookingStep6Controller implements Initializable {
 
             return true;
         } else {
-            showAlert(Alert.AlertType.ERROR, "Booking Failed",
-                    "Failed to create booking. Please try again.");
+            AlertUtility.showError("Booking Failed", "Submission Error", "Failed to create booking. Please try again.");
             return false;
         }
     }
@@ -162,20 +159,11 @@ public class BookingStep6Controller implements Initializable {
         }
 
         if (errors.length() > 0) {
-            showAlert(Alert.AlertType.WARNING, "Incomplete Booking",
-                    "Please complete the following:\n\n" + errors.toString());
+            AlertUtility.showWarning("Incomplete Booking", "Missing Information", "Please complete the following:\n\n" + errors.toString());
             return false;
         }
 
         return true;
-    }
-
-    private void showAlert(Alert.AlertType type, String title, String content) {
-        Alert alert = new Alert(type);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 
     /**

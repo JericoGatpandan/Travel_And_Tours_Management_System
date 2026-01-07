@@ -40,7 +40,7 @@
 }
 
 .new-booking-menu-button {
-    -fx-background-color: #3498db; /* Bright Blue Background */
+    -fx-background-color: linear-gradient(to right, #3498db, #6dd5fa);
     -fx-text-fill: #ffffff; /* White Text */
     -fx-pref-width: 223;
 }
